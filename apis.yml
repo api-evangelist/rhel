@@ -1,5 +1,5 @@
 aid: rhel
-name: Red Hat Enterprise Linux (RHEL) APIs
+name: Red Hat Enterprise Linux
 description: Collection of APIs and services for Red Hat Enterprise Linux including
   subscription management, insights analytics, content delivery, satellite management,
   security advisories, and automation platform APIs.
