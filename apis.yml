@@ -1,143 +1,78 @@
+aid: rhel
 name: Red Hat Enterprise Linux (RHEL) APIs
-description: Collection of APIs and services for Red Hat Enterprise Linux
-image: https://www.redhat.com/cms/managed-files/Logo-Red_Hat-A-Standard-RGB.svg
-created: '2024'
-modified: '2024'
-specificationVersion: '0.18'
-url: https://www.redhat.com/en/technologies/linux-platforms/enterprise-linux
-apis:
-- name: Red Hat Subscription Management API
-  description: API for managing RHEL subscriptions, entitlements, and system registrations
-  image: https://www.redhat.com/cms/managed-files/styles/wysiwyg_full_width/s3/Logo-Red_Hat-A-Standard-RGB.svg
-  humanURL: https://access.redhat.com/management/api
-  baseURL: https://api.access.redhat.com/management/v1
-  tags:
-  - subscriptions
-  - entitlements
-  - systems
-  - management
-  properties:
-  - type: Documentation
-    url: https://access.redhat.com/management/api/docs
-  - type: OpenAPI
-    url: https://api.access.redhat.com/management/v1/openapi.json
-  - type: Authentication
-    url: https://access.redhat.com/articles/3626371
-- name: Red Hat Insights API
-  description: Predictive analytics and remediation service for RHEL systems
-  image: https://www.redhat.com/cms/managed-files/styles/wysiwyg_full_width/s3/Logo-Red_Hat-A-Standard-RGB.svg
-  humanURL: https://console.redhat.com/docs/api/insights
-  baseURL: https://cloud.redhat.com/api/insights/v1
-  tags:
-  - analytics
-  - monitoring
-  - remediation
-  - vulnerabilities
-  properties:
-  - type: Documentation
-    url: https://console.redhat.com/docs/api/insights
-  - type: OpenAPI
-    url: https://cloud.redhat.com/api/insights/v1/openapi.json
-  - type: Console
-    url: https://console.redhat.com/insights
-- name: Red Hat Content Delivery Network API
-  description: API for accessing RHEL packages, updates, and content repositories
-  image: https://www.redhat.com/cms/managed-files/styles/wysiwyg_full_width/s3/Logo-Red_Hat-A-Standard-RGB.svg
-  humanURL: https://access.redhat.com/management/api
-  baseURL: https://cdn.redhat.com/api
-  tags:
-  - content
-  - packages
-  - repositories
-  - updates
-  properties:
-  - type: Documentation
-    url: https://access.redhat.com/documentation/en-us/red_hat_subscription_management/
-- name: Red Hat Satellite API
-  description: API for managing RHEL systems at scale with Satellite server
-  image: https://www.redhat.com/cms/managed-files/styles/wysiwyg_full_width/s3/Logo-Red_Hat-A-Standard-RGB.svg
-  humanURL: https://access.redhat.com/documentation/en-us/red_hat_satellite/
-  baseURL: https://<satellite-server>/api/v2
-  tags:
-  - satellite
-  - systems-management
-  - provisioning
-  - configuration
-  properties:
-  - type: Documentation
-    url: https://access.redhat.com/documentation/en-us/red_hat_satellite/6.14/html/api_guide/
-  - type: API Reference
-    url: https://access.redhat.com/documentation/en-us/red_hat_satellite/6.14/html/api_guide/chap-red_hat_satellite-api_guide-api_reference
-- name: Red Hat Errata API
-  description: API for accessing security advisories, bug fixes, and enhancement updates
-  image: https://www.redhat.com/cms/managed-files/styles/wysiwyg_full_width/s3/Logo-Red_Hat-A-Standard-RGB.svg
-  humanURL: https://access.redhat.com/documentation/en-us/red_hat_security_data_api/
-  baseURL: https://access.redhat.com/labs/securitydataapi
-  tags:
-  - security
-  - errata
-  - advisories
-  - cve
-  properties:
-  - type: Documentation
-    url: https://access.redhat.com/documentation/en-us/red_hat_security_data_api/1.0/
-  - type: Interactive Console
-    url: https://access.redhat.com/labs/securitydataapi/
-- name: Red Hat Ansible Automation Platform API
-  description: API for automation and configuration management on RHEL systems
-  image: https://www.redhat.com/cms/managed-files/styles/wysiwyg_full_width/s3/Logo-Red_Hat-A-Standard-RGB.svg
-  humanURL: https://docs.ansible.com/ansible-tower/latest/html/towerapi/
-  baseURL: https://<automation-controller>/api/v2
-  tags:
-  - automation
-  - ansible
-  - orchestration
-  - configuration-management
-  properties:
-  - type: Documentation
-    url: https://docs.ansible.com/automation-controller/latest/html/controllerapi/
-  - type: API Guide
-    url: https://docs.ansible.com/automation-controller/latest/html/controllerapi/api_ref.html
-- name: Red Hat Image Builder API
-  description: API for creating customized RHEL system images
-  image: https://www.redhat.com/cms/managed-files/styles/wysiwyg_full_width/s3/Logo-Red_Hat-A-Standard-RGB.svg
-  humanURL: https://console.redhat.com/docs/api/image-builder
-  baseURL: https://cloud.redhat.com/api/image-builder/v1
-  tags:
-  - images
-  - builder
-  - customization
-  - provisioning
-  properties:
-  - type: Documentation
-    url: https://console.redhat.com/docs/api/image-builder
-  - type: OpenAPI
-    url: https://cloud.redhat.com/api/image-builder/v1/openapi.json
-maintainers:
-- name: Red Hat, Inc.
-  email: support@redhat.com
-  url: https://www.redhat.com
+description: Collection of APIs and services for Red Hat Enterprise Linux including
+  subscription management, insights analytics, content delivery, satellite management,
+  security advisories, and automation platform APIs.
+type: Index
+image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 tags:
-- rhel
-- linux
-- enterprise
-- operating-system
-- red-hat
-- subscription-management
-- security
-- automation
+  - RHEL
+  - Linux
+  - Enterprise
+  - Operating System
+  - Red Hat
+  - Subscription Management
+  - Security
+  - Automation
+url: >-
+  https://raw.githubusercontent.com/api-evangelist/rhel/refs/heads/main/apis.yml
+created: '2024-01-01'
+modified: '2026-03-16'
+specificationVersion: '0.19'
+apis:
+  - aid: rhel:subscription-management-api
+    name: Red Hat Subscription Management API
+    description: API for managing RHEL subscriptions, entitlements, and system registrations.
+    humanURL: https://access.redhat.com/management/api
+    tags:
+      - Subscriptions
+      - Entitlements
+      - Systems Management
+    properties:
+      - type: Documentation
+        url: https://access.redhat.com/management/api/docs
+      - type: OpenAPI
+        url: https://api.access.redhat.com/management/v1/openapi.json
+      - type: Authentication
+        url: https://access.redhat.com/articles/3626371
+  - aid: rhel:insights-api
+    name: Red Hat Insights API
+    description: Predictive analytics and remediation service for RHEL systems.
+    humanURL: https://console.redhat.com/docs/api/insights
+    tags:
+      - Analytics
+      - Monitoring
+      - Remediation
+    properties:
+      - type: Documentation
+        url: https://console.redhat.com/docs/api/insights
+      - type: OpenAPI
+        url: https://cloud.redhat.com/api/insights/v1/openapi.json
+  - aid: rhel:security-data-api
+    name: Red Hat Security Data API
+    description: API for accessing security advisories, bug fixes, and enhancement updates.
+    humanURL: https://access.redhat.com/documentation/en-us/red_hat_security_data_api/
+    tags:
+      - Security
+      - Errata
+      - Advisories
+      - CVE
+    properties:
+      - type: Documentation
+        url: https://access.redhat.com/documentation/en-us/red_hat_security_data_api/1.0/
 common:
-- type: Portal
-  url: https://access.redhat.com
-- type: Customer Portal
-  url: https://console.redhat.com
-- type: Documentation
-  url: https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/
-- type: Support
-  url: https://access.redhat.com/support
-- type: Authentication
-  url: https://access.redhat.com/articles/3626371
-- type: Terms of Service
-  url: https://www.redhat.com/en/about/terms-use
-- type: Privacy Policy
-  url: https://www.redhat.com/en/about/privacy-policy
+  - type: Portal
+    url: https://access.redhat.com
+  - type: Documentation
+    url: https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/
+  - type: Support
+    url: https://access.redhat.com/support
+  - type: TermsOfService
+    url: https://www.redhat.com/en/about/terms-use
+  - type: PrivacyPolicy
+    url: https://www.redhat.com/en/about/privacy-policy
+  - type: Website
+    url: https://www.redhat.com
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com
