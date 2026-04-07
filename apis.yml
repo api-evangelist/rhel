@@ -1,19 +1,17 @@
 aid: rhel
 name: Red Hat Enterprise Linux
-description: Collection of APIs and services for Red Hat Enterprise Linux including
-  subscription management, insights analytics, content delivery, satellite management,
-  security advisories, and automation platform APIs.
+description: Collection of APIs and services for Red Hat Enterprise Linux including subscription management, insights analytics, content delivery, satellite management, security advisories, and automation platform APIs.
 type: Index
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 tags:
-  - RHEL
-  - Linux
+  - Automation
   - Enterprise
+  - Linux
   - Operating System
   - Red Hat
-  - Subscription Management
+  - RHEL
   - Security
-  - Automation
+  - Subscription Management
 url: >-
   https://raw.githubusercontent.com/api-evangelist/rhel/refs/heads/main/apis.yml
 created: '2024-01-01'
@@ -25,8 +23,8 @@ apis:
     description: API for managing RHEL subscriptions, entitlements, and system registrations.
     humanURL: https://access.redhat.com/management/api
     tags:
-      - Subscriptions
       - Entitlements
+      - Subscriptions
       - Systems Management
     properties:
       - type: Documentation
@@ -53,10 +51,10 @@ apis:
     description: API for accessing security advisories, bug fixes, and enhancement updates.
     humanURL: https://access.redhat.com/documentation/en-us/red_hat_security_data_api/
     tags:
-      - Security
-      - Errata
       - Advisories
       - CVE
+      - Errata
+      - Security
     properties:
       - type: Documentation
         url: https://access.redhat.com/documentation/en-us/red_hat_security_data_api/1.0/
