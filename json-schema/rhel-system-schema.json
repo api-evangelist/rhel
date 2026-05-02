@@ -1,0 +1,59 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/api-evangelist/rhel/blob/main/json-schema/rhel-system-schema.json",
+  "title": "RHEL System",
+  "description": "A Red Hat Enterprise Linux system registered with Subscription Management",
+  "type": "object",
+  "properties": {
+    "uuid": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Unique system identifier"
+    },
+    "name": {
+      "type": "string",
+      "description": "System hostname"
+    },
+    "type": {
+      "type": "string",
+      "description": "System type",
+      "enum": ["physical", "virtual", "hypervisor", "container"]
+    },
+    "created": {
+      "type": "string",
+      "format": "date-time",
+      "description": "System registration date"
+    },
+    "lastUpdated": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Last update timestamp"
+    },
+    "entitlementCount": {
+      "type": "integer",
+      "description": "Number of active entitlements",
+      "minimum": 0
+    },
+    "entitlementStatus": {
+      "type": "string",
+      "description": "Overall entitlement validity status",
+      "enum": ["valid", "invalid", "partial"]
+    },
+    "serviceLevel": {
+      "type": "string",
+      "description": "Service level agreement tier",
+      "example": "Premium"
+    },
+    "usage": {
+      "type": "string",
+      "description": "System usage designation",
+      "example": "Production"
+    },
+    "facts": {
+      "type": "object",
+      "description": "System hardware and software inventory facts",
+      "additionalProperties": true
+    }
+  },
+  "required": ["uuid", "name"]
+}

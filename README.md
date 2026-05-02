@@ -1,137 +1,121 @@
-# Red Hat Enterprise Linux (RHEL) APIs (rhel)
-Collection of APIs and services for Red Hat Enterprise Linux
+# Red Hat Enterprise Linux
 
-**URL:** [Visit APIs.json URL](https://www.redhat.com/en/technologies/linux-platforms/enterprise-linux)
-
-## Tags:
-
- - rhel, linux, enterprise, operating-system, red-hat, subscription-management, security, automation
-
-## Timestamps
-
-- **Created:** 2024 
-- **Modified:** 2024 
+Red Hat Enterprise Linux (RHEL) is the world's leading enterprise Linux platform, providing APIs and services for subscription management, security insights, compliance monitoring, vulnerability assessment, patch management, content delivery, and automation. The Red Hat Hybrid Cloud Console exposes a comprehensive suite of REST APIs for managing RHEL systems at scale.
 
 ## APIs
 
 ### Red Hat Subscription Management API
-API for managing RHEL subscriptions, entitlements, and system registrations
+API for managing RHEL subscriptions, entitlements, and system registrations. Enables automation of subscription lifecycle, system registration, and entitlement queries using OAuth 2.0 authentication.
 
-**Human URL:** [https://access.redhat.com/management/api](https://access.redhat.com/management/api)
-
-
-#### Tags:
-
- - subscriptions, entitlements, systems, management
-
-#### Properties
-
-- [Documentation](https://access.redhat.com/management/api/docs)
-- [OpenAPI](https://api.access.redhat.com/management/v1/openapi.json)
-- [Authentication](https://access.redhat.com/articles/3626371)
+- **Base URL:** `https://api.access.redhat.com/management/v1`
+- **Documentation:** https://access.redhat.com/management/api/docs
+- **Authentication:** OAuth 2.0 (offline token via Red Hat SSO)
 
 ### Red Hat Insights API
-Predictive analytics and remediation service for RHEL systems
+Predictive analytics and remediation service for RHEL systems. Provides advisor recommendations based on 20+ years of Red Hat support experience, covering security, performance, availability, and stability issues.
 
-**Human URL:** [https://console.redhat.com/docs/api/insights](https://console.redhat.com/docs/api/insights)
+- **Base URL:** `https://console.redhat.com/api/insights/v1`
+- **Documentation:** https://console.redhat.com/docs/api/insights
 
+### Red Hat Security Data API
+API for accessing security advisories, CVE data, bug fixes, and enhancement updates for Red Hat products. Enables automated vulnerability assessment and tracking of RHEL-relevant CVEs with severity filtering.
 
-#### Tags:
+- **Base URL:** `https://access.redhat.com/hydra/rest/securitydata`
+- **Documentation:** https://access.redhat.com/documentation/en-us/red_hat_security_data_api/1.0/
 
- - analytics, monitoring, remediation, vulnerabilities
+### Red Hat Insights Compliance API
+API for assessing, monitoring, and reporting on security-policy compliance of RHEL systems. Based on SCAP, enables creation and management of compliance policies and reports.
 
-#### Properties
+- **Base URL:** `https://console.redhat.com/api/compliance/v2`
+- **Documentation:** https://console.redhat.com/docs/api/compliance
 
-- [Documentation](https://console.redhat.com/docs/api/insights)
-- [OpenAPI](https://cloud.redhat.com/api/insights/v1/openapi.json)
-- [Console](https://console.redhat.com/insights)
+### Red Hat Insights Vulnerability API
+API for managing vulnerabilities on RHEL systems. Integrates with the Red Hat CVE database to assess outstanding CVEs and provide remediation guidance.
 
-### Red Hat Content Delivery Network API
-API for accessing RHEL packages, updates, and content repositories
+- **Base URL:** `https://console.redhat.com/api/vulnerability/v1`
+- **Documentation:** https://console.redhat.com/docs/api/vulnerability
 
-**Human URL:** [https://access.redhat.com/management/api](https://access.redhat.com/management/api)
+### Red Hat Insights Patch API
+API for patch management of RHEL systems. Tracks applicable advisories and patches for registered systems.
 
+- **Base URL:** `https://console.redhat.com/api/patch/v3`
+- **Documentation:** https://console.redhat.com/docs/api/patch
 
-#### Tags:
+### Red Hat Insights Host Inventory API
+API for managing the inventory of RHEL systems registered with Red Hat Insights.
 
- - content, packages, repositories, updates
+- **Base URL:** `https://console.redhat.com/api/inventory/v1`
+- **Documentation:** https://console.redhat.com/docs/api/inventory
 
-#### Properties
+### Red Hat Insights Remediations API
+API for creating and executing Ansible-based remediation playbooks for RHEL systems.
 
-- [Documentation](https://access.redhat.com/documentation/en-us/red_hat_subscription_management/)
+- **Base URL:** `https://console.redhat.com/api/remediations/v1`
+- **Documentation:** https://console.redhat.com/docs/api/remediations
 
-### Red Hat Satellite API
-API for managing RHEL systems at scale with Satellite server
+## OpenAPI Specifications
 
-**Human URL:** [https://access.redhat.com/documentation/en-us/red_hat_satellite/](https://access.redhat.com/documentation/en-us/red_hat_satellite/)
+| API | Specification |
+|-----|---------------|
+| Red Hat Security Data API | [rhel-security-data-openapi.yml](openapi/rhel-security-data-openapi.yml) |
+| Red Hat Subscription Management API | [rhel-subscription-management-openapi.yml](openapi/rhel-subscription-management-openapi.yml) |
 
+## Capabilities
 
-#### Tags:
+Naftiko capability definitions for AI-assisted RHEL management workflows:
 
- - satellite, systems-management, provisioning, configuration
+| Capability | Description |
+|------------|-------------|
+| [Vulnerability Management](capabilities/vulnerability-management.yaml) | Unified CVE assessment, advisory lookup, and subscription tracking |
 
-#### Properties
+### Shared Definitions
 
-- [Documentation](https://access.redhat.com/documentation/en-us/red_hat_satellite/6.14/html/api_guide/)
-- [API Reference](https://access.redhat.com/documentation/en-us/red_hat_satellite/6.14/html/api_guide/chap-red_hat_satellite-api_guide-api_reference)
+| Definition | API |
+|------------|-----|
+| [security-data.yaml](capabilities/shared/security-data.yaml) | Red Hat Security Data API |
+| [subscription-management.yaml](capabilities/shared/subscription-management.yaml) | Red Hat Subscription Management API |
 
-### Red Hat Errata API
-API for accessing security advisories, bug fixes, and enhancement updates
+## Rules
 
-**Human URL:** [https://access.redhat.com/documentation/en-us/red_hat_security_data_api/](https://access.redhat.com/documentation/en-us/red_hat_security_data_api/)
+Spectral ruleset for validating RHEL API conventions:
 
+- [rhel-rules.yml](rules/rhel-rules.yml)
 
-#### Tags:
+## JSON Schemas
 
- - security, errata, advisories, cve
+| Schema | Description |
+|--------|-------------|
+| [rhel-cve-schema.json](json-schema/rhel-cve-schema.json) | CVE record from the Security Data API |
+| [rhel-system-schema.json](json-schema/rhel-system-schema.json) | Registered RHEL system record |
 
-#### Properties
+## JSON Structures
 
-- [Documentation](https://access.redhat.com/documentation/en-us/red_hat_security_data_api/1.0/)
-- [Interactive Console](https://access.redhat.com/labs/securitydataapi/)
+| Structure | Description |
+|-----------|-------------|
+| [rhel-cve-structure.json](json-structure/rhel-cve-structure.json) | Field-level documentation for CVE records |
 
-### Red Hat Ansible Automation Platform API
-API for automation and configuration management on RHEL systems
+## JSON-LD
 
-**Human URL:** [https://docs.ansible.com/ansible-tower/latest/html/towerapi/](https://docs.ansible.com/ansible-tower/latest/html/towerapi/)
+| Context | Description |
+|---------|-------------|
+| [rhel-context.jsonld](json-ld/rhel-context.jsonld) | Linked data context for RHEL security and subscription entities |
 
+## Examples
 
-#### Tags:
+| Example | Description |
+|---------|-------------|
+| [rhel-get-cve-example.json](examples/rhel-get-cve-example.json) | Get CVE by ID request/response |
+| [rhel-list-cves-example.json](examples/rhel-list-cves-example.json) | List CVEs with severity filter |
 
- - automation, ansible, orchestration, configuration-management
+## Vocabulary
 
-#### Properties
+- [rhel-vocabulary.yml](vocabulary/rhel-vocabulary.yml) — Domain vocabulary for RHEL security, subscription, and compliance operations
 
-- [Documentation](https://docs.ansible.com/automation-controller/latest/html/controllerapi/)
-- [API Guide](https://docs.ansible.com/automation-controller/latest/html/controllerapi/api_ref.html)
+## Links
 
-### Red Hat Image Builder API
-API for creating customized RHEL system images
-
-**Human URL:** [https://console.redhat.com/docs/api/image-builder](https://console.redhat.com/docs/api/image-builder)
-
-
-#### Tags:
-
- - images, builder, customization, provisioning
-
-#### Properties
-
-- [Documentation](https://console.redhat.com/docs/api/image-builder)
-- [OpenAPI](https://cloud.redhat.com/api/image-builder/v1/openapi.json)
-
-## Common Properties
-
-- [Portal](https://access.redhat.com)
-- [Customer Portal](https://console.redhat.com)
-- [Documentation](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/)
-- [Support](https://access.redhat.com/support)
-- [Authentication](https://access.redhat.com/articles/3626371)
-- [Terms of Service](https://www.redhat.com/en/about/terms-use)
-- [Privacy Policy](https://www.redhat.com/en/about/privacy-policy)
-
-## Maintainers
-
-**FN:** Red Hat, Inc.
-
-**Email:** support@redhat.com
+- **Developer Portal:** https://developers.redhat.com/products/rhel
+- **Hybrid Cloud Console:** https://console.redhat.com
+- **Customer Portal:** https://access.redhat.com
+- **GitHub (RedHatOfficial):** https://github.com/RedHatOfficial
+- **GitHub (redhat-cop):** https://github.com/redhat-cop
+- **Authentication Guide:** https://access.redhat.com/articles/3626371

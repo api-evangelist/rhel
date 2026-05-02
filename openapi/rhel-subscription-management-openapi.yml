@@ -1,0 +1,243 @@
+openapi: 3.0.3
+info:
+  title: Red Hat Subscription Management API
+  description: >-
+    API for managing Red Hat Enterprise Linux subscriptions, entitlements,
+    and system registrations. Enables automated lifecycle management of
+    subscriptions, system inventory, and entitlement reporting using
+    OAuth 2.0 with offline tokens.
+  version: 'v1'
+  contact:
+    name: Red Hat Customer Portal
+    url: https://access.redhat.com/management/api
+  termsOfService: https://www.redhat.com/en/about/terms-use
+servers:
+  - url: https://api.access.redhat.com/management/v1
+    description: Red Hat Subscription Management API v1
+tags:
+  - name: Systems
+    description: Registered system management
+  - name: Subscriptions
+    description: Subscription and entitlement management
+  - name: Environments
+    description: Environment management for content delivery
+paths:
+  /systems:
+    get:
+      operationId: listSystems
+      summary: List Systems
+      description: >-
+        Returns a list of systems registered with Red Hat Subscription
+        Management. Supports pagination via limit and offset parameters.
+      tags:
+        - Systems
+      parameters:
+        - name: limit
+          in: query
+          description: Maximum number of systems to return
+          schema:
+            type: integer
+            default: 100
+            maximum: 100
+        - name: offset
+          in: query
+          description: Offset for pagination
+          schema:
+            type: integer
+            default: 0
+      security:
+        - OAuth2: []
+      responses:
+        '200':
+          description: List of registered systems
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  body:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/System'
+                  pagination:
+                    $ref: '#/components/schemas/Pagination'
+        '401':
+          description: Unauthorized - invalid or expired token
+  /systems/{uuid}:
+    get:
+      operationId: getSystem
+      summary: Get System
+      description: Returns details for a specific registered system by UUID.
+      tags:
+        - Systems
+      parameters:
+        - name: uuid
+          in: path
+          required: true
+          description: System UUID
+          schema:
+            type: string
+            format: uuid
+      security:
+        - OAuth2: []
+      responses:
+        '200':
+          description: System detail
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/System'
+        '404':
+          description: System not found
+  /subscriptions:
+    get:
+      operationId: listSubscriptions
+      summary: List Subscriptions
+      description: >-
+        Returns a list of subscriptions associated with the authenticated
+        Red Hat account.
+      tags:
+        - Subscriptions
+      parameters:
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            default: 100
+        - name: offset
+          in: query
+          schema:
+            type: integer
+            default: 0
+      security:
+        - OAuth2: []
+      responses:
+        '200':
+          description: List of subscriptions
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  body:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Subscription'
+                  pagination:
+                    $ref: '#/components/schemas/Pagination'
+  /allocations:
+    get:
+      operationId: listAllocations
+      summary: List Allocations
+      description: Returns a list of subscription allocations for the account.
+      tags:
+        - Subscriptions
+      security:
+        - OAuth2: []
+      responses:
+        '200':
+          description: List of allocations
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  body:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Allocation'
+components:
+  securitySchemes:
+    OAuth2:
+      type: oauth2
+      flows:
+        password:
+          tokenUrl: https://sso.redhat.com/auth/realms/redhat-external/protocol/openid-connect/token
+          scopes: {}
+  schemas:
+    System:
+      type: object
+      description: A registered RHEL system
+      properties:
+        uuid:
+          type: string
+          format: uuid
+          description: Unique system identifier
+        name:
+          type: string
+          description: System hostname
+        type:
+          type: string
+          description: System type (physical, virtual, hypervisor)
+        created:
+          type: string
+          format: date-time
+        lastUpdated:
+          type: string
+          format: date-time
+        entitlementCount:
+          type: integer
+          description: Number of active entitlements
+        entitlementStatus:
+          type: string
+          enum: [valid, invalid, partial]
+        serviceLevel:
+          type: string
+          description: Service level agreement tier
+        usage:
+          type: string
+          description: System usage type
+        facts:
+          type: object
+          description: System hardware and software facts
+    Subscription:
+      type: object
+      description: A Red Hat subscription
+      properties:
+        id:
+          type: string
+          description: Subscription identifier
+        subscriptionNumber:
+          type: string
+        sku:
+          type: string
+          description: Product SKU
+        quantity:
+          type: integer
+        startDate:
+          type: string
+          format: date-time
+        endDate:
+          type: string
+          format: date-time
+        status:
+          type: string
+          enum: [active, expired, future]
+    Allocation:
+      type: object
+      description: A subscription allocation
+      properties:
+        uuid:
+          type: string
+          format: uuid
+        name:
+          type: string
+        type:
+          type: string
+        version:
+          type: string
+        quantity:
+          type: integer
+        subscriptions:
+          type: array
+          items:
+            $ref: '#/components/schemas/Subscription'
+    Pagination:
+      type: object
+      properties:
+        count:
+          type: integer
+        limit:
+          type: integer
+        offset:
+          type: integer

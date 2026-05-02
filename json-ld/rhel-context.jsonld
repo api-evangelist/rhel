@@ -1,0 +1,46 @@
+{
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "rhel": "https://redhat.com/vocab/rhel#",
+    "security": "https://redhat.com/vocab/security#",
+
+    "CVE": "rhel:CVE",
+    "System": "rhel:System",
+    "Subscription": "rhel:Subscription",
+    "Advisory": "rhel:Advisory",
+    "Entitlement": "rhel:Entitlement",
+
+    "cveId": "rhel:cveId",
+    "threatSeverity": "rhel:threatSeverity",
+    "cvssScore": "rhel:cvssScore",
+    "cvss3Score": "rhel:cvss3Score",
+    "publicDate": "schema:datePublished",
+    "affectedRelease": "rhel:affectedRelease",
+    "packageState": "rhel:packageState",
+    "fixState": "rhel:fixState",
+    "cpe": "rhel:cpe",
+
+    "systemUUID": "rhel:systemUUID",
+    "entitlementStatus": "rhel:entitlementStatus",
+    "entitlementCount": "rhel:entitlementCount",
+    "serviceLevel": "rhel:serviceLevel",
+    "systemType": "rhel:systemType",
+
+    "subscriptionNumber": "rhel:subscriptionNumber",
+    "sku": "rhel:sku",
+    "startDate": "schema:startDate",
+    "endDate": "schema:endDate",
+    "subscriptionStatus": "rhel:subscriptionStatus",
+
+    "advisoryId": "rhel:advisoryId",
+    "advisoryType": "rhel:advisoryType",
+
+    "name": "schema:name",
+    "description": "schema:description",
+    "url": "schema:url",
+    "identifier": "schema:identifier",
+    "version": "schema:version",
+    "dateCreated": "schema:dateCreated",
+    "dateModified": "schema:dateModified"
+  }
+}

@@ -1,0 +1,76 @@
+rules:
+  rhel-operation-summary-title-case:
+    description: All operation summaries must use Title Case
+    severity: warn
+    given: "$.paths[*][get,post,put,patch,delete].summary"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^([A-Z][a-z]* )*[A-Z][a-z]*$"
+
+  rhel-operation-id-kebab-case:
+    description: Operation IDs should be camelCase
+    severity: warn
+    given: "$.paths[*][get,post,put,patch,delete].operationId"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[a-z][a-zA-Z0-9]*$"
+
+  rhel-tags-must-be-title-case:
+    description: Tags must use Title Case
+    severity: warn
+    given: "$.paths[*][get,post,put,patch,delete].tags[*]"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[A-Z][a-zA-Z0-9 ]*$"
+
+  rhel-must-have-security:
+    description: All operations must define security requirements
+    severity: error
+    given: "$.paths[*][get,post,put,patch,delete]"
+    then:
+      field: security
+      function: defined
+
+  rhel-responses-must-include-200:
+    description: GET operations must return a 200 response
+    severity: error
+    given: "$.paths[*].get"
+    then:
+      field: responses.200
+      function: defined
+
+  rhel-json-response-content-type:
+    description: API responses must use application/json content type
+    severity: warn
+    given: "$.paths[*][get].responses[200].content"
+    then:
+      field: application/json
+      function: defined
+
+  rhel-parameters-must-have-description:
+    description: All parameters must have a description
+    severity: warn
+    given: "$.paths[*][get,post,put,patch,delete].parameters[*]"
+    then:
+      field: description
+      function: defined
+
+  rhel-path-params-must-be-required:
+    description: Path parameters must be marked as required
+    severity: error
+    given: "$.paths[*][get,post,put,patch,delete].parameters[?(@.in == 'path')]"
+    then:
+      field: required
+      function: truthy
+
+  rhel-server-must-be-https:
+    description: All servers must use HTTPS
+    severity: error
+    given: "$.servers[*].url"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^https://"
