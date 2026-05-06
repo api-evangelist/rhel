@@ -4,221 +4,172 @@ schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main
 provider: Red Hat Enterprise Linux
 providerId: rhel
 created: '2026-05-04'
-modified: '2026-05-04'
+modified: '2026-05-05'
+reconciled: true
 tags:
-  - Automation
-  - Compliance
-  - Enterprise
   - Linux
   - Operating System
   - Red Hat
   - RHEL
-  - Security
   - Subscription Management
-  - Vulnerability Management
-description: Machine-readable plans and pricing scaffold for this API provider. Conforms to the API Commons
-  Plans schema. Tier limits and prices are scaffold defaults; replace with provider-published values.
+  - Enterprise
+description: >-
+  Red Hat Enterprise Linux is sold as annual entitlement-based subscriptions, with pricing set
+  per host (physical or virtual), per socket-pair, or per virtual datacenter. There is also a
+  no-cost Red Hat Developer Subscription that provides up to 16 entitlements for personal
+  use and up to 25 entitlements per registered user for business development. The RHEL APIs
+  exposed via the Red Hat Hybrid Cloud Console (Insights, Subscription Management, Patch,
+  Vulnerability, Compliance) are included with an entitled subscription rather than priced
+  separately.
+sources:
+  - https://www.redhat.com/en/store/linux-platforms
+  - https://developers.redhat.com/products/rhel/overview
+  - https://console.redhat.com/
 plans:
-  - id: rhel-free
-    name: Free
+  - id: rhel-developer-subscription
+    name: Red Hat Developer Subscription for Individuals
     type: freemium
-    description: Free entry tier for the Red Hat Enterprise Linux API surface. Intended for evaluation,
-      prototyping, and low-volume integrations. Real limits and pricing must be reconciled with the provider's
-      published plan documentation.
+    description: >-
+      No-cost subscription for individual developers. Up to 16 entitlements per registered
+      user for personal development and small-scale production-style testing. Includes access
+      to RHEL, the Hybrid Cloud Console APIs, and developer-focused documentation.
     entries:
-      - label: API Requests
-        description: Monthly API request quota across all included endpoints
-        name: api_requests
+      - label: RHEL Entitlements (Individual)
+        name: rhel_entitlements_individual
         type: quota
-        metric: requests
-        limit: 1000
-        timeFrame: month
+        metric: entitlement
+        limit: 16
+        timeFrame: usage
         geo: global
-        domains:
-          - https://api.access.redhat.com/management/v1
-          - https://console.redhat.com/api/insights/v1
-          - https://access.redhat.com/hydra/rest/securitydata
-          - https://console.redhat.com/api/compliance/v2
-          - https://console.redhat.com/api/vulnerability/v1
-          - https://console.redhat.com/api/patch/v3
-          - https://console.redhat.com/api/inventory/v1
-          - https://console.redhat.com/api/remediations/v1
-        unit: 1
-        price: '0.00'
-        userMultiplied: false
-      - label: Rate Limit
-        description: Maximum requests per minute on the free tier
-        name: rate_limit
-        type: rate
-        metric: requests_per_minute
-        limit: 10
-        timeFrame: minute
-        geo: global
-        domains:
-          - https://api.access.redhat.com/management/v1
-          - https://console.redhat.com/api/insights/v1
-          - https://access.redhat.com/hydra/rest/securitydata
-          - https://console.redhat.com/api/compliance/v2
-          - https://console.redhat.com/api/vulnerability/v1
-          - https://console.redhat.com/api/patch/v3
-          - https://console.redhat.com/api/inventory/v1
-          - https://console.redhat.com/api/remediations/v1
         unit: 1
         price: '0.00'
         userMultiplied: false
     elements:
-      - name: Public Documentation
-      - name: Community Support
-      - name: Sandbox Access
-      - name: Red Hat Subscription Management API
-      - name: Red Hat Insights API
-      - name: Red Hat Security Data API
-      - name: Red Hat Insights Compliance API
-      - name: Red Hat Insights Vulnerability API
-      - name: Red Hat Insights Patch API
-      - name: Red Hat Insights Host Inventory API
-      - name: Red Hat Insights Remediations API
-  - id: rhel-pro
-    name: Professional
-    type: paid
-    description: Production tier for Red Hat Enterprise Linux. Provides higher quotas, priority support,
-      and access to the broader API portfolio. Pricing placeholder; align with the provider's pricing
-      page.
+      - name: RHEL Latest Version Download
+      - name: No-Cost Sandbox Environments
+      - name: Hybrid Cloud Console API Access
+      - name: Developer Documentation
+  - id: rhel-developer-subscription-business
+    name: Red Hat Developer Subscription for Teams
+    type: freemium
+    description: >-
+      No-cost subscription extending developer access for business use. Up to 25 entitlements
+      per registered user within an organization for development and testing.
     entries:
-      - label: API Requests
-        description: Monthly API request quota
-        name: api_requests
+      - label: RHEL Entitlements (Team)
+        name: rhel_entitlements_team
         type: quota
-        metric: requests
-        limit: 100000
-        timeFrame: month
+        metric: entitlement
+        limit: 25
+        timeFrame: usage
         geo: global
-        domains:
-          - https://api.access.redhat.com/management/v1
-          - https://console.redhat.com/api/insights/v1
-          - https://access.redhat.com/hydra/rest/securitydata
-          - https://console.redhat.com/api/compliance/v2
-          - https://console.redhat.com/api/vulnerability/v1
-          - https://console.redhat.com/api/patch/v3
-          - https://console.redhat.com/api/inventory/v1
-          - https://console.redhat.com/api/remediations/v1
-        unit: 1
-        price: TBD
-        userMultiplied: false
-      - label: Rate Limit
-        description: Maximum requests per minute on the professional tier
-        name: rate_limit
-        type: rate
-        metric: requests_per_minute
-        limit: 100
-        timeFrame: minute
-        geo: global
-        domains:
-          - https://api.access.redhat.com/management/v1
-          - https://console.redhat.com/api/insights/v1
-          - https://access.redhat.com/hydra/rest/securitydata
-          - https://console.redhat.com/api/compliance/v2
-          - https://console.redhat.com/api/vulnerability/v1
-          - https://console.redhat.com/api/patch/v3
-          - https://console.redhat.com/api/inventory/v1
-          - https://console.redhat.com/api/remediations/v1
         unit: 1
         price: '0.00'
+        userMultiplied: true
+    elements:
+      - name: RHEL for Business Development Use
+      - name: Team-Scale Testing
+      - name: Hybrid Cloud Console API Access
+  - id: rhel-server
+    name: Red Hat Enterprise Linux Server
+    type: subscription
+    description: >-
+      Production server subscription deployable on physical, virtual, or cloud infrastructure.
+      Standard and Premium support options are sold separately on top of the base SKU.
+    entries:
+      - label: RHEL Server Annual Subscription
+        name: rhel_server_subscription
+        type: subscription
+        metric: host
+        limit: 1
+        timeFrame: year
+        geo: global
+        unit: 1
+        price: 'starting at $383.90'
         userMultiplied: false
-      - label: Overage
-        description: Per-request price after monthly quota is exceeded
-        name: overage
-        type: metered
-        metric: requests
+    elements:
+      - name: Red Hat Insights
+      - name: Subscription Manager
+      - name: Hybrid Cloud Console API
+      - name: Support (Standard or Premium)
+  - id: rhel-workstation
+    name: Red Hat Enterprise Linux Workstation
+    type: subscription
+    description: >-
+      Workstation subscription optimized for high-performance graphics, animation, and
+      scientific computing, with developer tools included.
+    entries:
+      - label: RHEL Workstation Annual Subscription
+        name: rhel_workstation_subscription
+        type: subscription
+        metric: workstation
+        limit: 1
+        timeFrame: year
+        geo: global
+        unit: 1
+        price: 'starting at $196.90'
+        userMultiplied: false
+    elements:
+      - name: Developer Tools
+      - name: Workstation-Focused Support
+  - id: rhel-power
+    name: Red Hat Enterprise Linux for IBM Power Little Endian
+    type: subscription
+    description: >-
+      RHEL tailored for POWER8 and later IBM Power Systems.
+    entries:
+      - label: RHEL on Power Annual Subscription
+        name: rhel_power_subscription
+        type: subscription
+        metric: socket-pair
+        limit: 1
+        timeFrame: year
+        geo: global
+        unit: 1
+        price: 'starting at $295.90'
+        userMultiplied: false
+    elements:
+      - name: IBM Power Optimization
+  - id: rhel-sap
+    name: Red Hat Enterprise Linux for SAP Solutions
+    type: subscription
+    description: >-
+      RHEL tuned for SAP workloads with high-availability features and certified SAP HANA
+      configurations.
+    entries:
+      - label: RHEL for SAP Annual Subscription
+        name: rhel_sap_subscription
+        type: subscription
+        metric: host
+        limit: 1
+        timeFrame: year
+        geo: global
+        unit: 1
+        price: 'starting at $1,923.90'
+        userMultiplied: false
+    elements:
+      - name: SAP HANA Certification
+      - name: High-Availability Add-Ons
+  - id: rhel-virtual-datacenters
+    name: Red Hat Enterprise Linux for Virtual Datacenters
+    type: subscription
+    description: >-
+      Per-host subscription that includes unlimited RHEL guest entitlement on the host's
+      hypervisor, designed for high-density virtualization.
+    entries:
+      - label: RHEL for Virtual Datacenters Annual Subscription
+        name: rhel_vdc_subscription
+        type: subscription
+        metric: host
         limit: -1
-        timeFrame: month
+        timeFrame: year
         geo: global
-        domains:
-          - https://api.access.redhat.com/management/v1
-          - https://console.redhat.com/api/insights/v1
-          - https://access.redhat.com/hydra/rest/securitydata
-          - https://console.redhat.com/api/compliance/v2
-          - https://console.redhat.com/api/vulnerability/v1
-          - https://console.redhat.com/api/patch/v3
-          - https://console.redhat.com/api/inventory/v1
-          - https://console.redhat.com/api/remediations/v1
-        unit: 1000
-        price: TBD
+        unit: 1
+        price: 'starting at $2,748.90'
         userMultiplied: false
     elements:
-      - name: All Production Endpoints
-      - name: Email Support
-      - name: SLA Targets
-      - name: Webhook Subscriptions
-      - name: Red Hat Subscription Management API
-      - name: Red Hat Insights API
-      - name: Red Hat Security Data API
-      - name: Red Hat Insights Compliance API
-      - name: Red Hat Insights Vulnerability API
-      - name: Red Hat Insights Patch API
-      - name: Red Hat Insights Host Inventory API
-      - name: Red Hat Insights Remediations API
-  - id: rhel-enterprise
-    name: Enterprise
-    type: enterprise
-    description: Custom-negotiated tier for Red Hat Enterprise Linux. Includes dedicated capacity, contractual
-      SLAs, security review, data residency options, and named technical account management.
-    entries:
-      - label: API Requests
-        description: Negotiated request volume; -1 indicates uncapped subject to fair use
-        name: api_requests
-        type: quota
-        metric: requests
-        limit: -1
-        timeFrame: month
-        geo: configurable
-        domains:
-          - https://api.access.redhat.com/management/v1
-          - https://console.redhat.com/api/insights/v1
-          - https://access.redhat.com/hydra/rest/securitydata
-          - https://console.redhat.com/api/compliance/v2
-          - https://console.redhat.com/api/vulnerability/v1
-          - https://console.redhat.com/api/patch/v3
-          - https://console.redhat.com/api/inventory/v1
-          - https://console.redhat.com/api/remediations/v1
-        unit: 1
-        price: custom
-        userMultiplied: false
-      - label: Rate Limit
-        description: Negotiated burst and steady-state rate
-        name: rate_limit
-        type: rate
-        metric: requests_per_minute
-        limit: 1000
-        timeFrame: minute
-        geo: configurable
-        domains:
-          - https://api.access.redhat.com/management/v1
-          - https://console.redhat.com/api/insights/v1
-          - https://access.redhat.com/hydra/rest/securitydata
-          - https://console.redhat.com/api/compliance/v2
-          - https://console.redhat.com/api/vulnerability/v1
-          - https://console.redhat.com/api/patch/v3
-          - https://console.redhat.com/api/inventory/v1
-          - https://console.redhat.com/api/remediations/v1
-        unit: 1
-        price: custom
-        userMultiplied: false
-    elements:
-      - name: Unlimited / Negotiated Volume
-      - name: 24/7 Dedicated Support
-      - name: Contractual SLA
-      - name: Security & Compliance Review
-      - name: Dedicated Account Manager
-      - name: Custom Data Residency
-      - name: Red Hat Subscription Management API
-      - name: Red Hat Insights API
-      - name: Red Hat Security Data API
-      - name: Red Hat Insights Compliance API
-      - name: Red Hat Insights Vulnerability API
-      - name: Red Hat Insights Patch API
-      - name: Red Hat Insights Host Inventory API
-      - name: Red Hat Insights Remediations API
+      - name: Unlimited Guest Entitlement
+      - name: Virtual Datacenter Optimization
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com

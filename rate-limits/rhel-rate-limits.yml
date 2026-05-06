@@ -4,126 +4,50 @@ schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main
 provider: Red Hat Enterprise Linux
 providerId: rhel
 created: '2026-05-04'
-modified: '2026-05-04'
+modified: '2026-05-05'
+reconciled: true
 tags:
-  - Automation
-  - Compliance
-  - Enterprise
-  - Linux
-  - Operating System
   - Red Hat
   - RHEL
-  - Security
-  - Subscription Management
-  - Vulnerability Management
+  - Hybrid Cloud Console
   - Rate Limiting
-  - Quotas
-  - Throttling
-description: Machine-readable rate limit definitions for the Red Hat Enterprise Linux API surface. Captures
-  per-tier quotas, burst behavior, response signaling, and recovery semantics. Defaults are scaffold values
-  to be replaced with published provider limits.
-headers:
-  limit: X-RateLimit-Limit
-  remaining: X-RateLimit-Remaining
-  reset: X-RateLimit-Reset
-  retryAfter: Retry-After
-  policy: RateLimit-Policy
+description: >-
+  The RHEL APIs exposed by the Red Hat Hybrid Cloud Console (Insights, subscription
+  management, patch, vulnerability, compliance) are authenticated via Red Hat service
+  accounts or offline tokens. Red Hat does not publish per-second or per-minute rate-limit
+  numbers for the console APIs; throttling is applied at Red Hat's discretion to protect
+  shared infrastructure and is communicated through standard HTTP 429 responses with
+  Retry-After hints when applied.
+sources:
+  - https://developers.redhat.com/api-catalog/
+  - https://console.redhat.com/docs/api
 responseCodes:
   throttled: 429
-  quotaExceeded: 429
   serviceUnavailable: 503
+headers:
+  retryAfter: Retry-After
 limits:
-  - tier: free
-    name: Free Tier Default
-    scope: api-key
-    metric: requests_per_minute
-    limit: 10
-    burst: 20
-    timeFrame: minute
-    applies:
-      - Red Hat Subscription Management API
-      - Red Hat Insights API
-      - Red Hat Security Data API
-      - Red Hat Insights Compliance API
-      - Red Hat Insights Vulnerability API
-      - Red Hat Insights Patch API
-      - Red Hat Insights Host Inventory API
-      - Red Hat Insights Remediations API
-  - tier: free
-    name: Free Tier Monthly Quota
-    scope: api-key
-    metric: requests_per_month
-    limit: 1000
-    timeFrame: month
-    applies:
-      - Red Hat Subscription Management API
-      - Red Hat Insights API
-      - Red Hat Security Data API
-      - Red Hat Insights Compliance API
-      - Red Hat Insights Vulnerability API
-      - Red Hat Insights Patch API
-      - Red Hat Insights Host Inventory API
-      - Red Hat Insights Remediations API
-  - tier: professional
-    name: Professional Tier Default
-    scope: api-key
-    metric: requests_per_minute
-    limit: 100
-    burst: 200
-    timeFrame: minute
-    applies:
-      - Red Hat Subscription Management API
-      - Red Hat Insights API
-      - Red Hat Security Data API
-      - Red Hat Insights Compliance API
-      - Red Hat Insights Vulnerability API
-      - Red Hat Insights Patch API
-      - Red Hat Insights Host Inventory API
-      - Red Hat Insights Remediations API
-  - tier: professional
-    name: Professional Tier Monthly Quota
-    scope: api-key
-    metric: requests_per_month
-    limit: 100000
-    timeFrame: month
-    applies:
-      - Red Hat Subscription Management API
-      - Red Hat Insights API
-      - Red Hat Security Data API
-      - Red Hat Insights Compliance API
-      - Red Hat Insights Vulnerability API
-      - Red Hat Insights Patch API
-      - Red Hat Insights Host Inventory API
-      - Red Hat Insights Remediations API
-  - tier: enterprise
-    name: Enterprise Negotiated Limit
-    scope: contract
-    metric: requests_per_minute
-    limit: 1000
-    burst: 5000
-    timeFrame: minute
-    applies:
-      - Red Hat Subscription Management API
-      - Red Hat Insights API
-      - Red Hat Security Data API
-      - Red Hat Insights Compliance API
-      - Red Hat Insights Vulnerability API
-      - Red Hat Insights Patch API
-      - Red Hat Insights Host Inventory API
-      - Red Hat Insights Remediations API
+  - name: Hybrid Cloud Console APIs
+    scope: account
+    metric: varies
+    limit: see Hybrid Cloud Console docs
+    notes: >-
+      Red Hat does not publish per-second numbers; throughput is bounded at the platform
+      level and surfaced via 429 with Retry-After when triggered.
 policies:
-  - name: Backoff Strategy
-    description: Clients should implement exponential backoff with jitter, honoring the Retry-After header
-      when present.
-  - name: Burst Handling
-    description: Short bursts above the steady-state limit are tolerated up to the documented burst ceiling
-      before throttling engages.
-  - name: Quota Reset
-    description: Monthly quotas reset at the start of each calendar month in UTC. Per-minute and per-second
-      windows reset on a sliding-window basis.
-  - name: Fair Use
-    description: Even on uncapped enterprise tiers, sustained usage that materially impacts shared infrastructure
-      may be subject to fair-use throttling.
+  - name: Service Account Authentication
+    description: >-
+      Programmatic access to Hybrid Cloud Console APIs uses Red Hat service accounts (OIDC
+      client credentials) or offline tokens. Tokens scope which entitled subscriptions are
+      visible and indirectly bound throughput.
+  - name: Backoff With Retry-After
+    description: >-
+      Clients should honor the Retry-After header on 429 responses and apply exponential
+      backoff with jitter for sustained workloads.
+  - name: Entitlement-Bound Visibility
+    description: >-
+      API responses are scoped to the subscriptions and hosts entitled under the requesting
+      account; quota effectively follows entitlement count rather than a flat per-key number.
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
