@@ -1,0 +1,115 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Red Hat Subscription Management API — Subscriptions
+  description: 'Red Hat Subscription Management API — Subscriptions. 2 operations. Lead operation: List Allocations. Self-contained
+    Naftiko capability covering one Rhel business surface.'
+  tags:
+  - Rhel
+  - Subscriptions
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    RHEL_API_KEY: RHEL_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: subscription-management-subscriptions
+    baseUri: https://api.access.redhat.com/management/v1
+    description: Red Hat Subscription Management API — Subscriptions business capability. Self-contained, no shared references.
+    resources:
+    - name: allocations
+      path: /allocations
+      operations:
+      - name: listallocations
+        method: GET
+        description: List Allocations
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: subscriptions
+      path: /subscriptions
+      operations:
+      - name: listsubscriptions
+        method: GET
+        description: List Subscriptions
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: limit
+          in: query
+          type: integer
+        - name: offset
+          in: query
+          type: integer
+    authentication:
+      type: bearer
+      token: '{{env.RHEL_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: subscription-management-subscriptions-rest
+    port: 8080
+    description: REST adapter for Red Hat Subscription Management API — Subscriptions. One Spectral-compliant resource per
+      consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/allocations
+      name: allocations
+      description: REST surface for allocations.
+      operations:
+      - method: GET
+        name: listallocations
+        description: List Allocations
+        call: subscription-management-subscriptions.listallocations
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/subscriptions
+      name: subscriptions
+      description: REST surface for subscriptions.
+      operations:
+      - method: GET
+        name: listsubscriptions
+        description: List Subscriptions
+        call: subscription-management-subscriptions.listsubscriptions
+        with:
+          limit: rest.limit
+          offset: rest.offset
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: subscription-management-subscriptions-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Red Hat Subscription Management API — Subscriptions. One tool per consumed operation, routed
+      inline through this capability's consumes block.
+    tools:
+    - name: list-allocations
+      description: List Allocations
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: subscription-management-subscriptions.listallocations
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-subscriptions
+      description: List Subscriptions
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: subscription-management-subscriptions.listsubscriptions
+      with:
+        limit: tools.limit
+        offset: tools.offset
+      outputParameters:
+      - type: object
+        mapping: $.

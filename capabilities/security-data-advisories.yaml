@@ -1,0 +1,77 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Red Hat Security Data API — Advisories
+  description: 'Red Hat Security Data API — Advisories. 1 operations. Lead operation: Get Security Advisory. Self-contained
+    Naftiko capability covering one Rhel business surface.'
+  tags:
+  - Rhel
+  - Advisories
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    RHEL_API_KEY: RHEL_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: security-data-advisories
+    baseUri: https://access.redhat.com/hydra/rest/securitydata
+    description: Red Hat Security Data API — Advisories business capability. Self-contained, no shared references.
+    resources:
+    - name: cvrf-advisoryId}.json
+      path: /cvrf/{advisoryId}.json
+      operations:
+      - name: getadvisory
+        method: GET
+        description: Get Security Advisory
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: advisoryId
+          in: path
+          type: string
+          description: Advisory identifier (e.g., RHSA-2021:2865)
+          required: true
+  exposes:
+  - type: rest
+    namespace: security-data-advisories-rest
+    port: 8080
+    description: REST adapter for Red Hat Security Data API — Advisories. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/cvrf/advisoryid-json
+      name: cvrf-advisoryid-json
+      description: REST surface for cvrf-advisoryId}.json.
+      operations:
+      - method: GET
+        name: getadvisory
+        description: Get Security Advisory
+        call: security-data-advisories.getadvisory
+        with:
+          advisoryId: rest.advisoryId
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: security-data-advisories-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Red Hat Security Data API — Advisories. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: get-security-advisory
+      description: Get Security Advisory
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: security-data-advisories.getadvisory
+      with:
+        advisoryId: tools.advisoryId
+      outputParameters:
+      - type: object
+        mapping: $.

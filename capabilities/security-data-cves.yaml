@@ -1,0 +1,148 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Red Hat Security Data API — CVEs
+  description: 'Red Hat Security Data API — CVEs. 2 operations. Lead operation: List CVEs. Self-contained Naftiko capability
+    covering one Rhel business surface.'
+  tags:
+  - Rhel
+  - CVEs
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    RHEL_API_KEY: RHEL_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: security-data-cves
+    baseUri: https://access.redhat.com/hydra/rest/securitydata
+    description: Red Hat Security Data API — CVEs business capability. Self-contained, no shared references.
+    resources:
+    - name: cve.json
+      path: /cve.json
+      operations:
+      - name: listcves
+        method: GET
+        description: List CVEs
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: before
+          in: query
+          type: string
+          description: Return CVEs before this date (YYYY-MM-DD)
+        - name: after
+          in: query
+          type: string
+          description: Return CVEs after this date (YYYY-MM-DD)
+        - name: product
+          in: query
+          type: string
+          description: Filter by Red Hat product name (e.g., "Red Hat Enterprise Linux 9")
+        - name: severity
+          in: query
+          type: string
+          description: Filter by severity level
+        - name: per_page
+          in: query
+          type: integer
+          description: Number of results per page (default 1000)
+        - name: page
+          in: query
+          type: integer
+          description: Page number for pagination
+    - name: cve-cveId}.json
+      path: /cve/{cveId}.json
+      operations:
+      - name: getcve
+        method: GET
+        description: Get CVE
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: cveId
+          in: path
+          type: string
+          description: CVE identifier (e.g., CVE-2021-23358)
+          required: true
+  exposes:
+  - type: rest
+    namespace: security-data-cves-rest
+    port: 8080
+    description: REST adapter for Red Hat Security Data API — CVEs. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/cve-json
+      name: cve-json
+      description: REST surface for cve.json.
+      operations:
+      - method: GET
+        name: listcves
+        description: List CVEs
+        call: security-data-cves.listcves
+        with:
+          before: rest.before
+          after: rest.after
+          product: rest.product
+          severity: rest.severity
+          per_page: rest.per_page
+          page: rest.page
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/cve/cveid-json
+      name: cve-cveid-json
+      description: REST surface for cve-cveId}.json.
+      operations:
+      - method: GET
+        name: getcve
+        description: Get CVE
+        call: security-data-cves.getcve
+        with:
+          cveId: rest.cveId
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: security-data-cves-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Red Hat Security Data API — CVEs. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: list-cves
+      description: List CVEs
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: security-data-cves.listcves
+      with:
+        before: tools.before
+        after: tools.after
+        product: tools.product
+        severity: tools.severity
+        per_page: tools.per_page
+        page: tools.page
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-cve
+      description: Get CVE
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: security-data-cves.getcve
+      with:
+        cveId: tools.cveId
+      outputParameters:
+      - type: object
+        mapping: $.
