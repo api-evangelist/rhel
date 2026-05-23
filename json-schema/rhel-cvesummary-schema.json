@@ -1,0 +1,68 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CVESummary",
+  "title": "CVESummary",
+  "type": "object",
+  "description": "Summary CVE record returned in list operations",
+  "properties": {
+    "CVE": {
+      "type": "string",
+      "description": "CVE identifier",
+      "example": "CVE-2021-23358"
+    },
+    "severity": {
+      "type": "string",
+      "description": "Severity rating",
+      "enum": [
+        "Low",
+        "Moderate",
+        "Important",
+        "Critical"
+      ]
+    },
+    "public_date": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Date the CVE was made public"
+    },
+    "advisories": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "List of associated advisory IDs"
+    },
+    "bugzilla": {
+      "type": "string",
+      "description": "Bugzilla ticket URL"
+    },
+    "bugzilla_description": {
+      "type": "string",
+      "description": "Short description of the vulnerability"
+    },
+    "cvss_score": {
+      "type": "number",
+      "description": "CVSS v2 base score"
+    },
+    "cvss3_score": {
+      "type": "number",
+      "description": "CVSS v3 base score"
+    },
+    "cwe": {
+      "type": "string",
+      "description": "CWE identifier"
+    },
+    "affected_packages": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "List of affected package names"
+    },
+    "resource_url": {
+      "type": "string",
+      "format": "uri",
+      "description": "URL for full CVE details"
+    }
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "provider": "Red Hat Enterprise Linux",
+  "providerId": "rhel",
+  "kind": "json-structure",
+  "description": "Structural overview of the Red Hat Enterprise Linux API surface; extracted from openapi/.",
+  "schemaCount": 3,
+  "operationCount": 4,
+  "schemas": [
+    {
+      "name": "CVESummary",
+      "type": "object",
+      "propertyCount": 11,
+      "required": []
+    },
+    {
+      "name": "CVEDetail",
+      "type": "object",
+      "propertyCount": 11,
+      "required": []
+    },
+    {
+      "name": "Advisory",
+      "type": "object",
+      "propertyCount": 5,
+      "required": []
+    }
+  ],
+  "operations": [
+    {
+      "method": "GET",
+      "path": "/cve.json",
+      "operationId": "listCVEs",
+      "summary": "List CVEs",
+      "tags": [
+        "CVEs"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/cve/{cveId}.json",
+      "operationId": "getCVE",
+      "summary": "Get CVE",
+      "tags": [
+        "CVEs"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/cvrf/{advisoryId}.json",
+      "operationId": "getAdvisory",
+      "summary": "Get Security Advisory",
+      "tags": [
+        "Advisories"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/oval/com.redhat.rhsa-RHEL{majorVersion}.xml.bz2",
+      "operationId": "getOVALStream",
+      "summary": "Get OVAL Stream",
+      "tags": [
+        "OVAL"
+      ]
+    }
+  ]
+}

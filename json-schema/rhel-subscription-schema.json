@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Subscription",
+  "title": "Subscription",
+  "type": "object",
+  "description": "A Red Hat subscription",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Subscription identifier"
+    },
+    "subscriptionNumber": {
+      "type": "string"
+    },
+    "sku": {
+      "type": "string",
+      "description": "Product SKU"
+    },
+    "quantity": {
+      "type": "integer"
+    },
+    "startDate": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "endDate": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "active",
+        "expired",
+        "future"
+      ]
+    }
+  }
+}

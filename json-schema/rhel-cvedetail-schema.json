@@ -1,0 +1,138 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CVEDetail",
+  "title": "CVEDetail",
+  "type": "object",
+  "description": "Full CVE detail record",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "CVE identifier",
+      "example": "CVE-2021-23358"
+    },
+    "threat_severity": {
+      "type": "string",
+      "description": "Red Hat severity rating",
+      "enum": [
+        "Low",
+        "Moderate",
+        "Important",
+        "Critical"
+      ]
+    },
+    "public_date": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "bugzilla": {
+      "type": "object",
+      "properties": {
+        "description": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string",
+          "format": "uri"
+        }
+      }
+    },
+    "cvss": {
+      "type": "object",
+      "properties": {
+        "cvss_base_score": {
+          "type": "string"
+        },
+        "cvss_scoring_vector": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        }
+      }
+    },
+    "cvss3": {
+      "type": "object",
+      "properties": {
+        "cvss3_base_score": {
+          "type": "string"
+        },
+        "cvss3_scoring_vector": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        }
+      }
+    },
+    "cwe": {
+      "type": "string"
+    },
+    "details": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Detailed description of the vulnerability"
+    },
+    "statement": {
+      "type": "string",
+      "description": "Red Hat impact statement"
+    },
+    "affected_release": {
+      "type": "array",
+      "description": "Fixed package releases",
+      "items": {
+        "type": "object",
+        "properties": {
+          "product_name": {
+            "type": "string"
+          },
+          "release_date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "advisory": {
+            "type": "string"
+          },
+          "cpe": {
+            "type": "string"
+          },
+          "package": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "package_state": {
+      "type": "array",
+      "description": "Packages with no available fix",
+      "items": {
+        "type": "object",
+        "properties": {
+          "product_name": {
+            "type": "string"
+          },
+          "fix_state": {
+            "type": "string",
+            "enum": [
+              "Affected",
+              "Will not fix",
+              "Fix deferred",
+              "Not affected",
+              "Out of support scope"
+            ]
+          },
+          "package_name": {
+            "type": "string"
+          },
+          "cpe": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

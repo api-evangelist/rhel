@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Allocation",
+  "title": "Allocation",
+  "type": "object",
+  "description": "A subscription allocation",
+  "properties": {
+    "uuid": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "name": {
+      "type": "string"
+    },
+    "type": {
+      "type": "string"
+    },
+    "version": {
+      "type": "string"
+    },
+    "quantity": {
+      "type": "integer"
+    },
+    "subscriptions": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Subscription"
+      }
+    }
+  }
+}

@@ -1,0 +1,63 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Advisory",
+  "title": "Advisory",
+  "type": "object",
+  "description": "Red Hat Security Advisory in CVRF format",
+  "properties": {
+    "DocumentTitle": {
+      "type": "string",
+      "description": "Title of the advisory"
+    },
+    "DocumentType": {
+      "type": "string",
+      "description": "Type of advisory (Security Advisory, Bug Fix Advisory, Enhancement Advisory)"
+    },
+    "DocumentPublisher": {
+      "type": "object",
+      "properties": {
+        "ContactDetails": {
+          "type": "string"
+        },
+        "IssuingAuthority": {
+          "type": "string"
+        }
+      }
+    },
+    "DocumentTracking": {
+      "type": "object",
+      "properties": {
+        "Identification": {
+          "type": "object",
+          "properties": {
+            "ID": {
+              "type": "string",
+              "description": "Advisory ID (e.g., RHSA-2021:2865)"
+            }
+          }
+        },
+        "Status": {
+          "type": "string"
+        },
+        "Version": {
+          "type": "string"
+        },
+        "InitialReleaseDate": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "CurrentReleaseDate": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "CVE": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "CVE identifiers addressed by this advisory"
+    }
+  }
+}
