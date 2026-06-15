@@ -1,0 +1,140 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Red Hat Security Data API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "CVEs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List CVEs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://access.redhat.com/hydra/rest/securitydata/cve.json",
+            "params": [
+              {
+                "name": "before",
+                "value": "",
+                "type": "query",
+                "description": "Return CVEs before this date (YYYY-MM-DD)"
+              },
+              {
+                "name": "after",
+                "value": "",
+                "type": "query",
+                "description": "Return CVEs after this date (YYYY-MM-DD)"
+              },
+              {
+                "name": "product",
+                "value": "",
+                "type": "query",
+                "description": "Filter by Red Hat product name (e.g., \"Red Hat Enterprise Linux 9\")"
+              },
+              {
+                "name": "severity",
+                "value": "",
+                "type": "query",
+                "description": "Filter by severity level"
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "Number of results per page (default 1000)"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number for pagination"
+              }
+            ]
+          },
+          "docs": "Returns a list of recent CVEs affecting Red Hat products. Supports filtering by date range, severity, product, and CVE identifiers. Returns the first page of 1000 results by default."
+        },
+        {
+          "info": {
+            "name": "Get CVE",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://access.redhat.com/hydra/rest/securitydata/cve/:cveId.json",
+            "params": [
+              {
+                "name": "cveId",
+                "value": "",
+                "type": "path",
+                "description": "CVE identifier (e.g., CVE-2021-23358)"
+              }
+            ]
+          },
+          "docs": "Returns detailed information about a specific CVE including affected packages, release information, severity ratings, CVSS scores, and Red Hat impact statements."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Advisories",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Security Advisory",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://access.redhat.com/hydra/rest/securitydata/cvrf/:advisoryId.json",
+            "params": [
+              {
+                "name": "advisoryId",
+                "value": "",
+                "type": "path",
+                "description": "Advisory identifier (e.g., RHSA-2021:2865)"
+              }
+            ]
+          },
+          "docs": "Returns detailed information about a specific Red Hat Security Advisory (RHSA, RHBA, or RHEA) in CVRF format, including affected packages, CVE references, and fix information."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "OVAL",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get OVAL Stream",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://access.redhat.com/hydra/rest/securitydata/oval/com.redhat.rhsa-RHEL:majorVersion.xml.bz2",
+            "params": [
+              {
+                "name": "majorVersion",
+                "value": "",
+                "type": "path",
+                "description": "RHEL major version number (e.g., 9)"
+              }
+            ]
+          },
+          "docs": "Returns the OVAL stream data for Red Hat Enterprise Linux assessment. Used by vulnerability scanners to assess RHEL system security posture."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
