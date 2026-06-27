@@ -76,7 +76,7 @@ apis:
     properties:
       - type: Documentation
         url: https://access.redhat.com/documentation/en-us/red_hat_security_data_api/1.0/
-      - type: GithubRepository
+      - type: GitHubRepository
         url: https://github.com/RedHatOfficial/rhsecapi
       - type: OpenAPI
         url: https://raw.githubusercontent.com/api-evangelist/rhel/refs/heads/main/openapi/rhel-security-data-openapi.yml
@@ -172,9 +172,9 @@ common:
     url: https://console.redhat.com
   - type: APIManagement
     url: https://access.redhat.com/management/api
-  - type: GithubOrg
+  - type: GitHubOrg
     url: https://github.com/RedHatOfficial
-  - type: GithubOrg
+  - type: GitHubOrg
     url: https://github.com/redhat-cop
   - type: Support
     url: https://access.redhat.com/support
