@@ -162,6 +162,12 @@ apis:
       - type: OpenAPI
         url: https://console.redhat.com/api/remediations/v1/openapi.json
 common:
+  - type: Authentication
+    url: authentication/rhel-authentication.yml
+  - type: OAuthScopes
+    url: scopes/rhel-scopes.yml
+  - url: https://www.redhat.com/en/rss/blog
+    type: Blog
   - type: Portal
     url: https://access.redhat.com
   - type: Developer

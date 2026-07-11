@@ -1,0 +1,22 @@
+generated: '2026-07-11'
+method: searched
+source: openapi/rhel-subscription-management-openapi.yml
+docs: https://docs.redhat.com/en/documentation/red_hat_insights/1-latest/html/using_the_red_hat_insights_api/apis-authentication
+schemes:
+- name: OAuth2
+  source: openapi/rhel-subscription-management-openapi.yml
+  flows:
+  - flow: password
+    tokenUrl: https://sso.redhat.com/auth/realms/redhat-external/protocol/openid-connect/token
+scopes:
+- scope: api.console
+  description: Grants a service account access to Red Hat Hybrid Cloud Console APIs
+    (Insights, Compliance, Vulnerability, Patch, Inventory, Remediations) via the
+    client_credentials grant against the Red Hat SSO token endpoint; fine-grained
+    permissions are managed through Hybrid Cloud Console User Access (RBAC) groups
+    rather than additional OAuth scopes.
+  sources:
+  - https://docs.redhat.com/en/documentation/red_hat_insights/1-latest/html/using_the_red_hat_insights_api/apis-authentication
+note: api.console is the only OAuth scope Red Hat documents for its APIs; console.redhat.com
+  access control is RBAC-based, and the Subscription Management API instead uses
+  an offline-token refresh flow (client_id rhsm-api) with no scopes per https://access.redhat.com/articles/3626371.
