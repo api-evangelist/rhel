@@ -1,0 +1,17 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/rhel-subscription-management-openapi.yml
+summary:
+  types:
+  - oauth2
+  oauth2_flows:
+  - password
+schemes:
+- name: OAuth2
+  type: oauth2
+  flows:
+  - flow: password
+    tokenUrl: https://sso.redhat.com/auth/realms/redhat-external/protocol/openid-connect/token
+    scopes: 0
+  sources:
+  - openapi/rhel-subscription-management-openapi.yml
