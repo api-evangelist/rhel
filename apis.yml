@@ -162,6 +162,8 @@ apis:
       - type: OpenAPI
         url: https://console.redhat.com/api/remediations/v1/openapi.json
 common:
+  - type: AgenticAccess
+    url: agentic-access/rhel-agentic-access.yml
   - type: TrustCenter
     url: security/rhel-trust-center.yml
   - type: VulnerabilityDisclosure
