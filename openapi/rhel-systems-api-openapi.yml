@@ -1,0 +1,130 @@
+openapi: 3.0.3
+info:
+  title: Red Hat Security Data Advisories Systems API
+  description: The Red Hat Security Data API provides access to CVE (Common Vulnerabilities and Exposures) data, CSAF security advisories, and OVAL vulnerability assessment data for Red Hat Enterprise Linux and other Red Hat products. Returns data in JSON format for automated vulnerability management workflows.
+  version: '1.0'
+  contact:
+    name: Red Hat Security
+    url: https://access.redhat.com/security/
+  termsOfService: https://www.redhat.com/en/about/terms-use
+servers:
+- url: https://access.redhat.com/hydra/rest/securitydata
+  description: Red Hat Security Data API
+tags:
+- name: Systems
+  description: Registered system management
+paths:
+  /systems:
+    get:
+      operationId: listSystems
+      summary: List Systems
+      description: Returns a list of systems registered with Red Hat Subscription Management. Supports pagination via limit and offset parameters.
+      tags:
+      - Systems
+      parameters:
+      - name: limit
+        in: query
+        description: Maximum number of systems to return
+        schema:
+          type: integer
+          default: 100
+          maximum: 100
+      - name: offset
+        in: query
+        description: Offset for pagination
+        schema:
+          type: integer
+          default: 0
+      security:
+      - OAuth2: []
+      responses:
+        '200':
+          description: List of registered systems
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  body:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/System'
+                  pagination:
+                    $ref: '#/components/schemas/Pagination'
+        '401':
+          description: Unauthorized - invalid or expired token
+  /systems/{uuid}:
+    get:
+      operationId: getSystem
+      summary: Get System
+      description: Returns details for a specific registered system by UUID.
+      tags:
+      - Systems
+      parameters:
+      - name: uuid
+        in: path
+        required: true
+        description: System UUID
+        schema:
+          type: string
+          format: uuid
+      security:
+      - OAuth2: []
+      responses:
+        '200':
+          description: System detail
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/System'
+        '404':
+          description: System not found
+components:
+  schemas:
+    Pagination:
+      type: object
+      properties:
+        count:
+          type: integer
+        limit:
+          type: integer
+        offset:
+          type: integer
+    System:
+      type: object
+      description: A registered RHEL system
+      properties:
+        uuid:
+          type: string
+          format: uuid
+          description: Unique system identifier
+        name:
+          type: string
+          description: System hostname
+        type:
+          type: string
+          description: System type (physical, virtual, hypervisor)
+        created:
+          type: string
+          format: date-time
+        lastUpdated:
+          type: string
+          format: date-time
+        entitlementCount:
+          type: integer
+          description: Number of active entitlements
+        entitlementStatus:
+          type: string
+          enum:
+          - valid
+          - invalid
+          - partial
+        serviceLevel:
+          type: string
+          description: Service level agreement tier
+        usage:
+          type: string
+          description: System usage type
+        facts:
+          type: object
+          description: System hardware and software facts

@@ -1,0 +1,127 @@
+openapi: 3.0.3
+info:
+  title: Red Hat Security Data Advisories Subscriptions API
+  description: The Red Hat Security Data API provides access to CVE (Common Vulnerabilities and Exposures) data, CSAF security advisories, and OVAL vulnerability assessment data for Red Hat Enterprise Linux and other Red Hat products. Returns data in JSON format for automated vulnerability management workflows.
+  version: '1.0'
+  contact:
+    name: Red Hat Security
+    url: https://access.redhat.com/security/
+  termsOfService: https://www.redhat.com/en/about/terms-use
+servers:
+- url: https://access.redhat.com/hydra/rest/securitydata
+  description: Red Hat Security Data API
+tags:
+- name: Subscriptions
+  description: Subscription and entitlement management
+paths:
+  /subscriptions:
+    get:
+      operationId: listSubscriptions
+      summary: List Subscriptions
+      description: Returns a list of subscriptions associated with the authenticated Red Hat account.
+      tags:
+      - Subscriptions
+      parameters:
+      - name: limit
+        in: query
+        schema:
+          type: integer
+          default: 100
+      - name: offset
+        in: query
+        schema:
+          type: integer
+          default: 0
+      security:
+      - OAuth2: []
+      responses:
+        '200':
+          description: List of subscriptions
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  body:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Subscription'
+                  pagination:
+                    $ref: '#/components/schemas/Pagination'
+  /allocations:
+    get:
+      operationId: listAllocations
+      summary: List Allocations
+      description: Returns a list of subscription allocations for the account.
+      tags:
+      - Subscriptions
+      security:
+      - OAuth2: []
+      responses:
+        '200':
+          description: List of allocations
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  body:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Allocation'
+components:
+  schemas:
+    Subscription:
+      type: object
+      description: A Red Hat subscription
+      properties:
+        id:
+          type: string
+          description: Subscription identifier
+        subscriptionNumber:
+          type: string
+        sku:
+          type: string
+          description: Product SKU
+        quantity:
+          type: integer
+        startDate:
+          type: string
+          format: date-time
+        endDate:
+          type: string
+          format: date-time
+        status:
+          type: string
+          enum:
+          - active
+          - expired
+          - future
+    Allocation:
+      type: object
+      description: A subscription allocation
+      properties:
+        uuid:
+          type: string
+          format: uuid
+        name:
+          type: string
+        type:
+          type: string
+        version:
+          type: string
+        quantity:
+          type: integer
+        subscriptions:
+          type: array
+          items:
+            $ref: '#/components/schemas/Subscription'
+    Pagination:
+      type: object
+      properties:
+        count:
+          type: integer
+        limit:
+          type: integer
+        offset:
+          type: integer

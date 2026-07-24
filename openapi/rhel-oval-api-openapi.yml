@@ -1,0 +1,39 @@
+openapi: 3.0.3
+info:
+  title: Red Hat Security Data Advisories OVAL API
+  description: The Red Hat Security Data API provides access to CVE (Common Vulnerabilities and Exposures) data, CSAF security advisories, and OVAL vulnerability assessment data for Red Hat Enterprise Linux and other Red Hat products. Returns data in JSON format for automated vulnerability management workflows.
+  version: '1.0'
+  contact:
+    name: Red Hat Security
+    url: https://access.redhat.com/security/
+  termsOfService: https://www.redhat.com/en/about/terms-use
+servers:
+- url: https://access.redhat.com/hydra/rest/securitydata
+  description: Red Hat Security Data API
+tags:
+- name: OVAL
+  description: Open Vulnerability and Assessment Language data
+paths:
+  /oval/com.redhat.rhsa-RHEL{majorVersion}.xml.bz2:
+    get:
+      operationId: getOVALStream
+      summary: Get OVAL Stream
+      description: Returns the OVAL stream data for Red Hat Enterprise Linux assessment. Used by vulnerability scanners to assess RHEL system security posture.
+      tags:
+      - OVAL
+      parameters:
+      - name: majorVersion
+        in: path
+        required: true
+        description: RHEL major version number (e.g., 9)
+        schema:
+          type: integer
+          example: 9
+      responses:
+        '200':
+          description: OVAL data stream
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary

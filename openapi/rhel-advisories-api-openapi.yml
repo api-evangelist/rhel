@@ -1,0 +1,83 @@
+openapi: 3.0.3
+info:
+  title: Red Hat Security Data Advisories API
+  description: The Red Hat Security Data API provides access to CVE (Common Vulnerabilities and Exposures) data, CSAF security advisories, and OVAL vulnerability assessment data for Red Hat Enterprise Linux and other Red Hat products. Returns data in JSON format for automated vulnerability management workflows.
+  version: '1.0'
+  contact:
+    name: Red Hat Security
+    url: https://access.redhat.com/security/
+  termsOfService: https://www.redhat.com/en/about/terms-use
+servers:
+- url: https://access.redhat.com/hydra/rest/securitydata
+  description: Red Hat Security Data API
+tags:
+- name: Advisories
+  description: Red Hat Security Advisories (CSAF/CVRF)
+paths:
+  /cvrf/{advisoryId}.json:
+    get:
+      operationId: getAdvisory
+      summary: Get Security Advisory
+      description: Returns detailed information about a specific Red Hat Security Advisory (RHSA, RHBA, or RHEA) in CVRF format, including affected packages, CVE references, and fix information.
+      tags:
+      - Advisories
+      parameters:
+      - name: advisoryId
+        in: path
+        required: true
+        description: Advisory identifier (e.g., RHSA-2021:2865)
+        schema:
+          type: string
+          example: RHSA-2021:2865
+      responses:
+        '200':
+          description: Advisory detail
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Advisory'
+        '404':
+          description: Advisory not found
+components:
+  schemas:
+    Advisory:
+      type: object
+      description: Red Hat Security Advisory in CVRF format
+      properties:
+        DocumentTitle:
+          type: string
+          description: Title of the advisory
+        DocumentType:
+          type: string
+          description: Type of advisory (Security Advisory, Bug Fix Advisory, Enhancement Advisory)
+        DocumentPublisher:
+          type: object
+          properties:
+            ContactDetails:
+              type: string
+            IssuingAuthority:
+              type: string
+        DocumentTracking:
+          type: object
+          properties:
+            Identification:
+              type: object
+              properties:
+                ID:
+                  type: string
+                  description: Advisory ID (e.g., RHSA-2021:2865)
+            Status:
+              type: string
+            Version:
+              type: string
+            InitialReleaseDate:
+              type: string
+              format: date-time
+            CurrentReleaseDate:
+              type: string
+              format: date-time
+        CVE:
+          type: array
+          items:
+            type: string
+          description: CVE identifiers addressed by this advisory
