@@ -1,0 +1,22 @@
+{
+  "provider": "rhel",
+  "sources": [
+    "rhel-advisories-api-openapi.yml",
+    "rhel-cves-api-openapi.yml",
+    "rhel-oval-api-openapi.yml",
+    "rhel-subscriptions-api-openapi.yml",
+    "rhel-systems-api-openapi.yml"
+  ],
+  "outputs": [
+    "rhel-advisories-api-openapi.yml",
+    "rhel-cves-api-openapi.yml",
+    "rhel-oval-api-openapi.yml",
+    "rhel-subscriptions-api-openapi.yml",
+    "rhel-systems-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
