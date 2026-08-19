@@ -1,0 +1,190 @@
+{
+  "item": [
+    {
+      "id": "a3ac8659-5fc4-4a8a-85a9-09a8cabfd487",
+      "name": "Subscriptions",
+      "description": {
+        "content": "Subscription and entitlement management",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "041a6fc2-a9c0-40f5-95b9-4f2cda6c126b",
+          "name": "List Subscriptions",
+          "request": {
+            "name": "List Subscriptions",
+            "description": {
+              "content": "Returns a list of subscriptions associated with the authenticated Red Hat account.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "subscriptions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "100"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "8f8aef2c-a661-48ac-9dd3-9c68f9ca46a3",
+              "name": "List of subscriptions",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"body\": [\n    {\n      \"id\": \"string\",\n      \"subscriptionNumber\": \"string\",\n      \"sku\": \"string\",\n      \"quantity\": 4094,\n      \"startDate\": \"1967-01-08T20:54:29.993Z\",\n      \"endDate\": \"2005-06-14T07:24:38.296Z\",\n      \"status\": \"active\"\n    },\n    {\n      \"id\": \"string\",\n      \"subscriptionNumber\": \"string\",\n      \"sku\": \"string\",\n      \"quantity\": 6562,\n      \"startDate\": \"1969-04-07T02:13:20.180Z\",\n      \"endDate\": \"1981-05-22T23:54:36.160Z\",\n      \"status\": \"future\"\n    }\n  ],\n  \"pagination\": {\n    \"count\": 6127,\n    \"limit\": 6726,\n    \"offset\": 6146\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bbe3b804-80ef-44cb-844a-395f8f2d6f0f",
+          "name": "List Allocations",
+          "request": {
+            "name": "List Allocations",
+            "description": {
+              "content": "Returns a list of subscription allocations for the account.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "allocations"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "b8d8bf9a-1913-45ec-a40b-0c8177c0610a",
+              "name": "List of allocations",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "allocations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"body\": [\n    {\n      \"uuid\": \"d1cd7d31-804b-eace-d952-113b600f231f\",\n      \"name\": \"string\",\n      \"type\": \"string\",\n      \"version\": \"string\",\n      \"quantity\": 2610,\n      \"subscriptions\": [\n        {\n          \"id\": \"string\",\n          \"subscriptionNumber\": \"string\",\n          \"sku\": \"string\",\n          \"quantity\": 3457,\n          \"startDate\": \"1947-12-12T07:53:25.929Z\",\n          \"endDate\": \"2025-07-07T15:04:10.516Z\",\n          \"status\": \"future\"\n        },\n        {\n          \"id\": \"string\",\n          \"subscriptionNumber\": \"string\",\n          \"sku\": \"string\",\n          \"quantity\": 8148,\n          \"startDate\": \"1991-04-06T07:21:45.857Z\",\n          \"endDate\": \"1951-07-04T22:51:38.857Z\",\n          \"status\": \"future\"\n        }\n      ]\n    },\n    {\n      \"uuid\": \"0d703d06-f489-1204-6140-f5b6931941b8\",\n      \"name\": \"string\",\n      \"type\": \"string\",\n      \"version\": \"string\",\n      \"quantity\": 2886,\n      \"subscriptions\": [\n        {\n          \"id\": \"string\",\n          \"subscriptionNumber\": \"string\",\n          \"sku\": \"string\",\n          \"quantity\": 8435,\n          \"startDate\": \"2019-08-17T07:24:20.817Z\",\n          \"endDate\": \"1952-12-13T22:49:58.555Z\",\n          \"status\": \"expired\"\n        },\n        {\n          \"id\": \"string\",\n          \"subscriptionNumber\": \"string\",\n          \"sku\": \"string\",\n          \"quantity\": 842,\n          \"startDate\": \"2004-06-30T05:22:50.291Z\",\n          \"endDate\": \"2013-09-10T21:10:26.090Z\",\n          \"status\": \"future\"\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://access.redhat.com/hydra/rest/securitydata",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "52b42b84-03ff-4093-8200-16fd9cccd951",
+    "name": "Red Hat Security Data Advisories Subscriptions API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Red Hat Security Data API provides access to CVE (Common Vulnerabilities and Exposures) data, CSAF security advisories, and OVAL vulnerability assessment data for Red Hat Enterprise Linux and other Red Hat products. Returns data in JSON format for automated vulnerability management workflows.\n\nContact Support:\n Name: Red Hat Security",
+      "type": "text/plain"
+    }
+  }
+}

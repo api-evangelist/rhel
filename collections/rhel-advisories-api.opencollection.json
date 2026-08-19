@@ -1,0 +1,37 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Red Hat Security Data Advisories API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Advisories",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Security Advisory",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://access.redhat.com/hydra/rest/securitydata/cvrf/:advisoryId.json",
+            "params": [
+              {
+                "name": "advisoryId",
+                "value": "",
+                "type": "path",
+                "description": "Advisory identifier (e.g., RHSA-2021:2865)"
+              }
+            ]
+          },
+          "docs": "Returns detailed information about a specific Red Hat Security Advisory (RHSA, RHBA, or RHEA) in CVRF format, including affected packages, CVE references, and fix information."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

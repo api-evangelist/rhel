@@ -1,0 +1,144 @@
+{
+  "item": [
+    {
+      "id": "3e1014f3-258c-4964-aab5-f6851d0702af",
+      "name": "Advisories",
+      "description": {
+        "content": "Red Hat Security Advisories (CSAF/CVRF)",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "281191f1-801c-4af2-b862-2c7f37bea952",
+          "name": "Get Security Advisory",
+          "request": {
+            "name": "Get Security Advisory",
+            "description": {
+              "content": "Returns detailed information about a specific Red Hat Security Advisory (RHSA, RHBA, or RHEA) in CVRF format, including affected packages, CVE references, and fix information.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "cvrf",
+                "{{advisoryId}}.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "61c92ce2-6430-439b-a728-6c1468fc55b6",
+              "name": "Advisory detail",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cvrf",
+                    "{{advisoryId}}.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"DocumentTitle\": \"string\",\n  \"DocumentType\": \"string\",\n  \"DocumentPublisher\": {\n    \"ContactDetails\": \"string\",\n    \"IssuingAuthority\": \"string\"\n  },\n  \"DocumentTracking\": {\n    \"Identification\": {\n      \"ID\": \"string\"\n    },\n    \"Status\": \"string\",\n    \"Version\": \"string\",\n    \"InitialReleaseDate\": \"1958-01-04T21:14:12.236Z\",\n    \"CurrentReleaseDate\": \"2012-05-11T07:56:54.407Z\"\n  },\n  \"CVE\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "130375ab-cdb5-4f53-b95e-6a4f9267ec38",
+              "name": "Advisory not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cvrf",
+                    "{{advisoryId}}.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://access.redhat.com/hydra/rest/securitydata",
+      "key": "baseUrl"
+    },
+    {
+      "disabled": false,
+      "description": {
+        "content": "(Required) Advisory identifier (e.g., RHSA-2021:2865)",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "<string>",
+      "key": "advisoryId"
+    }
+  ],
+  "info": {
+    "_postman_id": "f0564c7d-dd00-4a33-abc2-2bc09d1e392c",
+    "name": "Red Hat Security Data Advisories API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Red Hat Security Data API provides access to CVE (Common Vulnerabilities and Exposures) data, CSAF security advisories, and OVAL vulnerability assessment data for Red Hat Enterprise Linux and other Red Hat products. Returns data in JSON format for automated vulnerability management workflows.\n\nContact Support:\n Name: Red Hat Security",
+      "type": "text/plain"
+    }
+  }
+}

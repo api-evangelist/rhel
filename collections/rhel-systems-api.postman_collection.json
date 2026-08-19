@@ -1,0 +1,286 @@
+{
+  "item": [
+    {
+      "id": "b5b02437-b19c-4b5a-ae9f-efd5c30e878d",
+      "name": "Systems",
+      "description": {
+        "content": "Registered system management",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "e2821c90-6d66-4022-9158-f2f7df5811f1",
+          "name": "List Systems",
+          "request": {
+            "name": "List Systems",
+            "description": {
+              "content": "Returns a list of systems registered with Red Hat Subscription Management. Supports pagination via limit and offset parameters.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "systems"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "100",
+                  "description": "Maximum number of systems to return"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "Offset for pagination"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "801ca1eb-ccb8-49a9-91ac-12e1eca817c6",
+              "name": "List of registered systems",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "systems"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"body\": [\n    {\n      \"uuid\": \"5c55480a-3792-8510-a3fc-2518cfba2642\",\n      \"name\": \"string\",\n      \"type\": \"string\",\n      \"created\": \"1977-07-30T23:34:14.097Z\",\n      \"lastUpdated\": \"2024-04-22T04:29:46.917Z\",\n      \"entitlementCount\": 8983,\n      \"entitlementStatus\": \"valid\",\n      \"serviceLevel\": \"string\",\n      \"usage\": \"string\",\n      \"facts\": {}\n    },\n    {\n      \"uuid\": \"c255e795-ff21-b6ef-f547-55e3fcb9dba3\",\n      \"name\": \"string\",\n      \"type\": \"string\",\n      \"created\": \"1960-01-07T07:06:41.711Z\",\n      \"lastUpdated\": \"2013-06-24T23:30:58.386Z\",\n      \"entitlementCount\": 3736,\n      \"entitlementStatus\": \"valid\",\n      \"serviceLevel\": \"string\",\n      \"usage\": \"string\",\n      \"facts\": {}\n    }\n  ],\n  \"pagination\": {\n    \"count\": 5438,\n    \"limit\": 5925,\n    \"offset\": 1212\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3776f56c-2cbc-40c6-9783-35afadcd5bc5",
+              "name": "Unauthorized - invalid or expired token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "systems"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "732a2509-66aa-4e16-8851-5ec20ab61cb0",
+          "name": "Get System",
+          "request": {
+            "name": "Get System",
+            "description": {
+              "content": "Returns details for a specific registered system by UUID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "systems",
+                ":uuid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "uuid",
+                  "description": "(Required) System UUID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "8f197114-b559-4859-9d6c-d0aea879bf6e",
+              "name": "System detail",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "systems",
+                    ":uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "uuid",
+                      "description": "(Required) System UUID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"uuid\": \"65f57119-3f3d-5bba-30a1-1a36496d060a\",\n  \"name\": \"string\",\n  \"type\": \"string\",\n  \"created\": \"1998-09-11T05:30:58.434Z\",\n  \"lastUpdated\": \"2014-05-19T05:26:28.488Z\",\n  \"entitlementCount\": 9284,\n  \"entitlementStatus\": \"invalid\",\n  \"serviceLevel\": \"string\",\n  \"usage\": \"string\",\n  \"facts\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b45e3419-b30d-4241-98e2-a7840daa86aa",
+              "name": "System not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "systems",
+                    ":uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "uuid",
+                      "description": "(Required) System UUID"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://access.redhat.com/hydra/rest/securitydata",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "b5ac6e32-ecdc-4bbe-b5ab-0edb0c2f937a",
+    "name": "Red Hat Security Data Advisories Systems API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Red Hat Security Data API provides access to CVE (Common Vulnerabilities and Exposures) data, CSAF security advisories, and OVAL vulnerability assessment data for Red Hat Enterprise Linux and other Red Hat products. Returns data in JSON format for automated vulnerability management workflows.\n\nContact Support:\n Name: Red Hat Security",
+      "type": "text/plain"
+    }
+  }
+}

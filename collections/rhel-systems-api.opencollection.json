@@ -1,0 +1,62 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Red Hat Security Data Advisories Systems API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Systems",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Systems",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://access.redhat.com/hydra/rest/securitydata/systems",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of systems to return"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Offset for pagination"
+              }
+            ]
+          },
+          "docs": "Returns a list of systems registered with Red Hat Subscription Management. Supports pagination via limit and offset parameters."
+        },
+        {
+          "info": {
+            "name": "Get System",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://access.redhat.com/hydra/rest/securitydata/systems/:uuid",
+            "params": [
+              {
+                "name": "uuid",
+                "value": "",
+                "type": "path",
+                "description": "System UUID"
+              }
+            ]
+          },
+          "docs": "Returns details for a specific registered system by UUID."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

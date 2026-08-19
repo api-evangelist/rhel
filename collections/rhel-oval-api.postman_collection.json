@@ -1,0 +1,114 @@
+{
+  "item": [
+    {
+      "id": "6c454180-09a9-4132-8128-72537dbf16ce",
+      "name": "OVAL",
+      "description": {
+        "content": "Open Vulnerability and Assessment Language data",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "23723d92-5bcf-40c6-94c5-585f6cbd85ee",
+          "name": "Get OVAL Stream",
+          "request": {
+            "name": "Get OVAL Stream",
+            "description": {
+              "content": "Returns the OVAL stream data for Red Hat Enterprise Linux assessment. Used by vulnerability scanners to assess RHEL system security posture.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "oval",
+                "com.redhat.rhsa-RHEL{{majorVersion}}.xml.bz2"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/octet-stream"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "446ec128-54ef-41df-bb73-abad36fabb3f",
+              "name": "OVAL data stream",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "oval",
+                    "com.redhat.rhsa-RHEL{{majorVersion}}.xml.bz2"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/octet-stream"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/octet-stream"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://access.redhat.com/hydra/rest/securitydata",
+      "key": "baseUrl"
+    },
+    {
+      "disabled": false,
+      "description": {
+        "content": "(Required) RHEL major version number (e.g., 9)",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "<integer>",
+      "key": "majorVersion"
+    }
+  ],
+  "info": {
+    "_postman_id": "7c9661c0-559a-4957-badd-f783630c6c14",
+    "name": "Red Hat Security Data Advisories OVAL API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Red Hat Security Data API provides access to CVE (Common Vulnerabilities and Exposures) data, CSAF security advisories, and OVAL vulnerability assessment data for Red Hat Enterprise Linux and other Red Hat products. Returns data in JSON format for automated vulnerability management workflows.\n\nContact Support:\n Name: Red Hat Security",
+      "type": "text/plain"
+    }
+  }
+}

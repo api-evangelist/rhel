@@ -1,0 +1,86 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Red Hat Security Data Advisories CVEs API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "CVEs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List CVEs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://access.redhat.com/hydra/rest/securitydata/cve.json",
+            "params": [
+              {
+                "name": "before",
+                "value": "",
+                "type": "query",
+                "description": "Return CVEs before this date (YYYY-MM-DD)"
+              },
+              {
+                "name": "after",
+                "value": "",
+                "type": "query",
+                "description": "Return CVEs after this date (YYYY-MM-DD)"
+              },
+              {
+                "name": "product",
+                "value": "",
+                "type": "query",
+                "description": "Filter by Red Hat product name (e.g., \"Red Hat Enterprise Linux 9\")"
+              },
+              {
+                "name": "severity",
+                "value": "",
+                "type": "query",
+                "description": "Filter by severity level"
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "Number of results per page (default 1000)"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number for pagination"
+              }
+            ]
+          },
+          "docs": "Returns a list of recent CVEs affecting Red Hat products. Supports filtering by date range, severity, product, and CVE identifiers. Returns the first page of 1000 results by default."
+        },
+        {
+          "info": {
+            "name": "Get CVE",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://access.redhat.com/hydra/rest/securitydata/cve/:cveId.json",
+            "params": [
+              {
+                "name": "cveId",
+                "value": "",
+                "type": "path",
+                "description": "CVE identifier (e.g., CVE-2021-23358)"
+              }
+            ]
+          },
+          "docs": "Returns detailed information about a specific CVE including affected packages, release information, severity ratings, CVSS scores, and Red Hat impact statements."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

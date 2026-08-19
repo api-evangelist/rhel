@@ -1,0 +1,37 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Red Hat Security Data Advisories OVAL API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "OVAL",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get OVAL Stream",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://access.redhat.com/hydra/rest/securitydata/oval/com.redhat.rhsa-RHEL:majorVersion.xml.bz2",
+            "params": [
+              {
+                "name": "majorVersion",
+                "value": "",
+                "type": "path",
+                "description": "RHEL major version number (e.g., 9)"
+              }
+            ]
+          },
+          "docs": "Returns the OVAL stream data for Red Hat Enterprise Linux assessment. Used by vulnerability scanners to assess RHEL system security posture."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
