@@ -132,6 +132,8 @@ apis:
   humanURL: https://access.redhat.com/management/api
   baseURL: https://api.access.redhat.com/management/v1
   tags:
+  - Subscription
+  tags_raw:
   - Subscriptions
   properties:
   - type: OpenAPI
