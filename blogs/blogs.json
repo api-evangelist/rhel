@@ -5,10 +5,10 @@
       "source": "https://www.redhat.com/en/rss/blog",
       "feed_url": "https://www.redhat.com/en/rss/blog",
       "title": "",
-      "saved": 10,
+      "saved": 0,
       "method": "feed"
     }
   ],
-  "fetched": "2026-08-15T12:11:08Z",
-  "post_count": 70
+  "fetched": "2026-08-22T20:20:02Z",
+  "post_count": 80
 }
