@@ -1,15 +1,15 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Red Hat Security Data Advisories Systems API
-  description: The Red Hat Security Data API provides access to CVE (Common Vulnerabilities and Exposures) data, CSAF security advisories, and OVAL vulnerability assessment data for Red Hat Enterprise Linux and other Red Hat products. Returns data in JSON format for automated vulnerability management workflows.
-  version: '1.0'
+  title: Red Hat Subscription Management Systems API
+  description: API for managing Red Hat Enterprise Linux subscriptions, entitlements, and system registrations. Enables automated lifecycle management of subscriptions, system inventory, and entitlement reporting using OAuth 2.0 with offline tokens.
+  version: v1
   contact:
-    name: Red Hat Security
-    url: https://access.redhat.com/security/
+    name: Red Hat Customer Portal
+    url: https://access.redhat.com/management/api
   termsOfService: https://www.redhat.com/en/about/terms-use
 servers:
-- url: https://access.redhat.com/hydra/rest/securitydata
-  description: Red Hat Security Data API
+- url: https://api.access.redhat.com/management/v1
+  description: Red Hat Subscription Management API v1
 tags:
 - name: Systems
   description: Registered system management
@@ -81,15 +81,6 @@ paths:
           description: System not found
 components:
   schemas:
-    Pagination:
-      type: object
-      properties:
-        count:
-          type: integer
-        limit:
-          type: integer
-        offset:
-          type: integer
     System:
       type: object
       description: A registered RHEL system
@@ -128,3 +119,19 @@ components:
         facts:
           type: object
           description: System hardware and software facts
+    Pagination:
+      type: object
+      properties:
+        count:
+          type: integer
+        limit:
+          type: integer
+        offset:
+          type: integer
+  securitySchemes:
+    OAuth2:
+      type: oauth2
+      flows:
+        password:
+          tokenUrl: https://sso.redhat.com/auth/realms/redhat-external/protocol/openid-connect/token
+          scopes: {}
