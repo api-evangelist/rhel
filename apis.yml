@@ -6,6 +6,20 @@ description: >-
   delivery, and automation. The Red Hat Hybrid Cloud Console exposes a comprehensive suite of REST APIs for managing
   RHEL systems at scale.
 type: Index
+deliveryModel:
+  model: open-core
+  license: GPL-3.0
+  open_source: true
+  commercial: true
+  callable_host: true
+  label: Open core · an OSS project plus a commercial hosted product
+  confidence: high
+  source:
+  - license
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: freemium
   onboarding: self-serve
@@ -189,6 +203,10 @@ apis:
   - type: Documentation
     url: https://console.redhat.com/docs/api/remediations
 common:
+  - type: IssueTracker
+    url: https://github.com/RedHatOfficial/rhsecapi/issues
+  - type: Releases
+    url: https://github.com/RedHatOfficial/rhsecapi/releases
   - type: License
     name: GPL-3.0
     url: https://github.com/RedHatOfficial/rhsecapi/blob/master/LICENSE
