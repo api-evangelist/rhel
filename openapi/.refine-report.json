@@ -11,17 +11,21 @@
     "rhel-subscriptions-api-openapi.yml",
     "rhel-systems-api-openapi.yml"
   ],
-  "archived": [],
+  "archived": [
+    "deleted 1 superseded output(s) from the previous generation"
+  ],
   "errors": [],
   "warnings": [],
   "notes": [
     "sourced from openapi/_original/ (2 archived document(s)); previously refined output at the top level was skipped rather than re-split",
     "rhel-security-data-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
-    "rhel-subscription-management-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0"
+    "rhel-subscription-management-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "superseded outputs removed: rhel-cv-es-api-openapi.yml",
+    "apis.yml register: written (+1 apis, 5 total)"
   ],
   "skipped": [
     "rhel-advisories-api-openapi.yml: previously refined output, superseded by openapi/_original/",
-    "rhel-cves-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "rhel-cv-es-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "rhel-oval-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "rhel-subscriptions-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "rhel-systems-api-openapi.yml: previously refined output, superseded by openapi/_original/"

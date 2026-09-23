@@ -71,6 +71,15 @@ paths:
                       $ref: '#/components/schemas/Allocation'
 components:
   schemas:
+    Pagination:
+      type: object
+      properties:
+        count:
+          type: integer
+        limit:
+          type: integer
+        offset:
+          type: integer
     Allocation:
       type: object
       description: A subscription allocation
@@ -116,15 +125,6 @@ components:
           - active
           - expired
           - future
-    Pagination:
-      type: object
-      properties:
-        count:
-          type: integer
-        limit:
-          type: integer
-        offset:
-          type: integer
   securitySchemes:
     OAuth2:
       type: oauth2
