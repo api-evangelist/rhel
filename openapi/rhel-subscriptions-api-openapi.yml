@@ -71,34 +71,6 @@ paths:
                       $ref: '#/components/schemas/Allocation'
 components:
   schemas:
-    Pagination:
-      type: object
-      properties:
-        count:
-          type: integer
-        limit:
-          type: integer
-        offset:
-          type: integer
-    Allocation:
-      type: object
-      description: A subscription allocation
-      properties:
-        uuid:
-          type: string
-          format: uuid
-        name:
-          type: string
-        type:
-          type: string
-        version:
-          type: string
-        quantity:
-          type: integer
-        subscriptions:
-          type: array
-          items:
-            $ref: '#/components/schemas/Subscription'
     Subscription:
       type: object
       description: A Red Hat subscription
@@ -125,6 +97,34 @@ components:
           - active
           - expired
           - future
+    Allocation:
+      type: object
+      description: A subscription allocation
+      properties:
+        uuid:
+          type: string
+          format: uuid
+        name:
+          type: string
+        type:
+          type: string
+        version:
+          type: string
+        quantity:
+          type: integer
+        subscriptions:
+          type: array
+          items:
+            $ref: '#/components/schemas/Subscription'
+    Pagination:
+      type: object
+      properties:
+        count:
+          type: integer
+        limit:
+          type: integer
+        offset:
+          type: integer
   securitySchemes:
     OAuth2:
       type: oauth2

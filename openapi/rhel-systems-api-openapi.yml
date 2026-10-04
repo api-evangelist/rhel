@@ -81,15 +81,6 @@ paths:
           description: System not found
 components:
   schemas:
-    Pagination:
-      type: object
-      properties:
-        count:
-          type: integer
-        limit:
-          type: integer
-        offset:
-          type: integer
     System:
       type: object
       description: A registered RHEL system
@@ -128,6 +119,15 @@ components:
         facts:
           type: object
           description: System hardware and software facts
+    Pagination:
+      type: object
+      properties:
+        count:
+          type: integer
+        limit:
+          type: integer
+        offset:
+          type: integer
   securitySchemes:
     OAuth2:
       type: oauth2
