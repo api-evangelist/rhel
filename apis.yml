@@ -203,6 +203,9 @@ apis:
   - type: Documentation
     url: https://console.redhat.com/docs/api/remediations
 common:
+  - type: CapabilityMap
+    url: capabilities/rhel-capability-edges.yml
+    name: Red Hat Enterprise Linux Business Capability Map
   - type: IssueTracker
     url: https://github.com/RedHatOfficial/rhsecapi/issues
   - type: Releases
