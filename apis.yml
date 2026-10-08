@@ -203,6 +203,12 @@ apis:
   - type: Documentation
     url: https://console.redhat.com/docs/api/remediations
 common:
+  - type: Plans
+    url: plans/rhel-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/rhel-rate-limits.yml
+  - type: FinOps
+    url: finops/rhel-finops.yml
   - type: CapabilityMap
     url: capabilities/rhel-capability-edges.yml
     name: Red Hat Enterprise Linux Business Capability Map
