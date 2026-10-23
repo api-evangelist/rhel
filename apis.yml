@@ -203,6 +203,8 @@ apis:
   - type: Documentation
     url: https://console.redhat.com/docs/api/remediations
 common:
+  - type: PostmanWorkspace
+    url: https://www.postman.com/kinlaneapi/red-hat-enterprise-linux/overview
   - type: Plans
     url: plans/rhel-plans-pricing.yml
   - type: RateLimits
