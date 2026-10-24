@@ -1,276 +1,281 @@
 {
+  "info": {
+    "_postman_id": "f7e11063-d9ad-491a-927d-5a7668d63d7a",
+    "name": "Red Hat Security Data CVEs API",
+    "description": "The Red Hat Security Data API provides access to CVE (Common Vulnerabilities and Exposures) data, CSAF security advisories, and OVAL vulnerability assessment data for Red Hat Enterprise Linux and other Red Hat products. Returns data in JSON format for automated vulnerability management workflows.\n\nContact Support:\n Name: Red Hat Security",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-21T20:02:24.000Z",
+    "updatedAt": "2026-10-21T20:02:25.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-f7e11063-d9ad-491a-927d-5a7668d63d7a"
+  },
   "item": [
     {
-      "id": "12426352-60d8-49d1-961b-937ced23f4b2",
-      "name": "CVEs",
-      "description": {
-        "content": "Common Vulnerabilities and Exposures data",
-        "type": "text/plain"
-      },
+      "name": "cve.json",
       "item": [
         {
-          "id": "9bb47677-862e-4f13-82ac-6d3bc4eb4936",
           "name": "List CVEs",
+          "id": "b23f4651-7f84-46ee-81a8-67f964e4c67a",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
           "request": {
-            "name": "List CVEs",
-            "description": {
-              "content": "Returns a list of recent CVEs affecting Red Hat products. Supports filtering by date range, severity, product, and CVE identifiers. Returns the first page of 1000 results by default.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "cve.json"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "before",
-                  "value": "<date>",
-                  "description": "Return CVEs before this date (YYYY-MM-DD)"
-                },
-                {
-                  "disabled": false,
-                  "key": "after",
-                  "value": "<date>",
-                  "description": "Return CVEs after this date (YYYY-MM-DD)"
-                },
-                {
-                  "disabled": false,
-                  "key": "product",
-                  "value": "<string>",
-                  "description": "Filter by Red Hat product name (e.g., \"Red Hat Enterprise Linux 9\")"
-                },
-                {
-                  "disabled": false,
-                  "key": "severity",
-                  "value": "<string>",
-                  "description": "Filter by severity level"
-                },
-                {
-                  "disabled": false,
-                  "key": "per_page",
-                  "value": "1000",
-                  "description": "Number of results per page (default 1000)"
-                },
-                {
-                  "disabled": false,
-                  "key": "page",
-                  "value": "1",
-                  "description": "Page number for pagination"
-                }
-              ],
-              "variable": []
-            },
+            "method": "GET",
             "header": [
               {
                 "key": "Accept",
                 "value": "application/json"
               }
             ],
-            "method": "GET",
-            "auth": null
+            "url": {
+              "raw": "{{baseUrl}}/cve.json?before=<date>&after=<date>&product=<string>&severity=Important&per_page=1000&page=1",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "cve.json"
+              ],
+              "query": [
+                {
+                  "description": "Return CVEs before this date (YYYY-MM-DD)",
+                  "key": "before",
+                  "value": "<date>"
+                },
+                {
+                  "description": "Return CVEs after this date (YYYY-MM-DD)",
+                  "key": "after",
+                  "value": "<date>"
+                },
+                {
+                  "description": "Filter by Red Hat product name (e.g., \"Red Hat Enterprise Linux 9\")",
+                  "key": "product",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Filter by severity level",
+                  "key": "severity",
+                  "value": "Important"
+                },
+                {
+                  "description": "Number of results per page (default 1000)",
+                  "key": "per_page",
+                  "value": "1000"
+                },
+                {
+                  "description": "Page number for pagination",
+                  "key": "page",
+                  "value": "1"
+                }
+              ]
+            },
+            "description": "Returns a list of recent CVEs affecting Red Hat products. Supports filtering by date range, severity, product, and CVE identifiers. Returns the first page of 1000 results by default."
           },
           "response": [
             {
-              "id": "49ea202f-14f4-4c52-9dd6-a4dddc877578",
+              "id": "4e51e5db-ad8a-4926-8fe2-fc4293531d25",
               "name": "List of CVEs",
               "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
                 "url": {
-                  "path": [
-                    "cve.json"
-                  ],
+                  "raw": "{{baseUrl}}/cve.json?before=<date>&after=<date>&product=<string>&severity=Important&per_page=1000&page=1",
                   "host": [
                     "{{baseUrl}}"
                   ],
+                  "path": [
+                    "cve.json"
+                  ],
                   "query": [
                     {
+                      "description": "Return CVEs before this date (YYYY-MM-DD)",
                       "key": "before",
                       "value": "<date>"
                     },
                     {
+                      "description": "Return CVEs after this date (YYYY-MM-DD)",
                       "key": "after",
                       "value": "<date>"
                     },
                     {
+                      "description": "Filter by Red Hat product name (e.g., \"Red Hat Enterprise Linux 9\")",
                       "key": "product",
                       "value": "<string>"
                     },
                     {
+                      "description": "Filter by severity level",
                       "key": "severity",
-                      "value": "<string>"
+                      "value": "Important"
                     },
                     {
+                      "description": "Number of results per page (default 1000)",
                       "key": "per_page",
                       "value": "1000"
                     },
                     {
+                      "description": "Page number for pagination",
                       "key": "page",
                       "value": "1"
                     }
-                  ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
+                  ]
+                }
               },
               "status": "OK",
               "code": 200,
+              "_postman_previewlanguage": "json",
               "header": [
                 {
                   "key": "Content-Type",
                   "value": "application/json"
                 }
               ],
-              "body": "[\n  {\n    \"CVE\": \"CVE-2021-23358\",\n    \"severity\": \"Critical\",\n    \"public_date\": \"2019-06-01T03:40:10.527Z\",\n    \"advisories\": [\n      \"string\",\n      \"string\"\n    ],\n    \"bugzilla\": \"string\",\n    \"bugzilla_description\": \"string\",\n    \"cvss_score\": 5759.530099568457,\n    \"cvss3_score\": 1671.5272399599235,\n    \"cwe\": \"string\",\n    \"affected_packages\": [\n      \"string\",\n      \"string\"\n    ],\n    \"resource_url\": \"https://WoDFwaGxDTBvSdgaEDKxWTdUlZnWYk.shvgL2ddAOOxJy+XJnTiHt9\"\n  },\n  {\n    \"CVE\": \"CVE-2021-23358\",\n    \"severity\": \"Critical\",\n    \"public_date\": \"2003-07-30T10:06:49.430Z\",\n    \"advisories\": [\n      \"string\",\n      \"string\"\n    ],\n    \"bugzilla\": \"string\",\n    \"bugzilla_description\": \"string\",\n    \"cvss_score\": 3222.189106379899,\n    \"cvss3_score\": 5212.917542014793,\n    \"cwe\": \"string\",\n    \"affected_packages\": [\n      \"string\",\n      \"string\"\n    ],\n    \"resource_url\": \"https://OikKRvAlAL.dixfpeCqtnJMbmgsk1vw\"\n  }\n]",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "[\n  {\n    \"CVE\": \"<string>\",\n    \"severity\": \"Moderate\",\n    \"public_date\": \"<dateTime>\",\n    \"advisories\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"bugzilla\": \"<string>\",\n    \"bugzilla_description\": \"<string>\",\n    \"cvss_score\": \"<number>\",\n    \"cvss3_score\": \"<number>\",\n    \"cwe\": \"<string>\",\n    \"affected_packages\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"resource_url\": \"<uri>\"\n  },\n  {\n    \"CVE\": \"<string>\",\n    \"severity\": \"Moderate\",\n    \"public_date\": \"<dateTime>\",\n    \"advisories\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"bugzilla\": \"<string>\",\n    \"bugzilla_description\": \"<string>\",\n    \"cvss_score\": \"<number>\",\n    \"cvss3_score\": \"<number>\",\n    \"cwe\": \"<string>\",\n    \"affected_packages\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"resource_url\": \"<uri>\"\n  }\n]",
+              "createdAt": "2026-10-21T20:02:25.000Z",
+              "updatedAt": "2026-10-21T20:02:25.000Z",
+              "uid": "35240-4e51e5db-ad8a-4926-8fe2-fc4293531d25"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "dd3c3acb-3f43-4a6c-a6e3-f08a6668dcf7",
-          "name": "Get CVE",
-          "request": {
-            "name": "Get CVE",
-            "description": {
-              "content": "Returns detailed information about a specific CVE including affected packages, release information, severity ratings, CVSS scores, and Red Hat impact statements.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "cve",
-                "{{cveId}}.json"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "d662f31b-c5c0-4975-bc76-b03b681f0a6f",
-              "name": "CVE detail",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "cve",
-                    "{{cveId}}.json"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"name\": \"CVE-2021-23358\",\n  \"threat_severity\": \"Low\",\n  \"public_date\": \"2001-10-25T21:28:36.724Z\",\n  \"bugzilla\": {\n    \"description\": \"string\",\n    \"id\": \"string\",\n    \"url\": \"https://Jko.awkFwwDl9WiPeKdZG9qm-kimMgKf3Huyh6KseZdYcQm6-YOHxhNUmMgOUZxB229cmyg\"\n  },\n  \"cvss\": {\n    \"cvss_base_score\": \"string\",\n    \"cvss_scoring_vector\": \"string\",\n    \"status\": \"string\"\n  },\n  \"cvss3\": {\n    \"cvss3_base_score\": \"string\",\n    \"cvss3_scoring_vector\": \"string\",\n    \"status\": \"string\"\n  },\n  \"cwe\": \"string\",\n  \"details\": [\n    \"string\",\n    \"string\"\n  ],\n  \"statement\": \"string\",\n  \"affected_release\": [\n    {\n      \"product_name\": \"string\",\n      \"release_date\": \"1961-01-25T10:35:28.870Z\",\n      \"advisory\": \"string\",\n      \"cpe\": \"string\",\n      \"package\": \"string\"\n    },\n    {\n      \"product_name\": \"string\",\n      \"release_date\": \"1969-10-14T19:41:12.117Z\",\n      \"advisory\": \"string\",\n      \"cpe\": \"string\",\n      \"package\": \"string\"\n    }\n  ],\n  \"package_state\": [\n    {\n      \"product_name\": \"string\",\n      \"fix_state\": \"Fix deferred\",\n      \"package_name\": \"string\",\n      \"cpe\": \"string\"\n    },\n    {\n      \"product_name\": \"string\",\n      \"fix_state\": \"Will not fix\",\n      \"package_name\": \"string\",\n      \"cpe\": \"string\"\n    }\n  ]\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "9f55e4a3-5ab9-40a9-95cd-1b1950cd9f17",
-              "name": "CVE not found",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "cve",
-                    "{{cveId}}.json"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "createdAt": "2026-10-21T20:02:25.000Z",
+          "updatedAt": "2026-10-21T20:02:25.000Z",
+          "uid": "35240-b23f4651-7f84-46ee-81a8-67f964e4c67a"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
-    {
-      "type": "string",
-      "value": "https://access.redhat.com/hydra/rest/securitydata",
-      "key": "baseUrl"
+      "id": "5f9bb763-22d0-4043-9523-bd2b5b0ddcb9",
+      "createdAt": "2026-10-21T20:02:25.000Z",
+      "updatedAt": "2026-10-21T20:02:25.000Z",
+      "uid": "35240-5f9bb763-22d0-4043-9523-bd2b5b0ddcb9"
     },
     {
-      "disabled": false,
-      "description": {
-        "content": "(Required) CVE identifier (e.g., CVE-2021-23358)",
-        "type": "text/plain"
-      },
-      "type": "any",
-      "value": "<string>",
-      "key": "cveId"
+      "name": "cve",
+      "item": [
+        {
+          "name": "{cveId}.json",
+          "item": [
+            {
+              "name": "Get CVE",
+              "id": "338bcda9-f066-473c-bbed-801dc4398039",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/cve/{{cveId}}.json",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "cve",
+                    "{{cveId}}.json"
+                  ]
+                },
+                "description": "Returns detailed information about a specific CVE including affected packages, release information, severity ratings, CVSS scores, and Red Hat impact statements."
+              },
+              "response": [
+                {
+                  "id": "9c1f365b-98c7-4b63-85b1-39a812d1d740",
+                  "name": "CVE detail",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/cve/{{cveId}}.json",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "cve",
+                        "{{cveId}}.json"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"name\": \"<string>\",\n  \"threat_severity\": \"Important\",\n  \"public_date\": \"<dateTime>\",\n  \"bugzilla\": {\n    \"description\": \"<string>\",\n    \"id\": \"<string>\",\n    \"url\": \"<uri>\"\n  },\n  \"cvss\": {\n    \"cvss_base_score\": \"<string>\",\n    \"cvss_scoring_vector\": \"<string>\",\n    \"status\": \"<string>\"\n  },\n  \"cvss3\": {\n    \"cvss3_base_score\": \"<string>\",\n    \"cvss3_scoring_vector\": \"<string>\",\n    \"status\": \"<string>\"\n  },\n  \"cwe\": \"<string>\",\n  \"details\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"statement\": \"<string>\",\n  \"affected_release\": [\n    {\n      \"product_name\": \"<string>\",\n      \"release_date\": \"<dateTime>\",\n      \"advisory\": \"<string>\",\n      \"cpe\": \"<string>\",\n      \"package\": \"<string>\"\n    },\n    {\n      \"product_name\": \"<string>\",\n      \"release_date\": \"<dateTime>\",\n      \"advisory\": \"<string>\",\n      \"cpe\": \"<string>\",\n      \"package\": \"<string>\"\n    }\n  ],\n  \"package_state\": [\n    {\n      \"product_name\": \"<string>\",\n      \"fix_state\": \"Out of support scope\",\n      \"package_name\": \"<string>\",\n      \"cpe\": \"<string>\"\n    },\n    {\n      \"product_name\": \"<string>\",\n      \"fix_state\": \"Out of support scope\",\n      \"package_name\": \"<string>\",\n      \"cpe\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-10-21T20:02:25.000Z",
+                  "updatedAt": "2026-10-21T20:02:25.000Z",
+                  "uid": "35240-9c1f365b-98c7-4b63-85b1-39a812d1d740"
+                },
+                {
+                  "id": "b047f895-fe06-49dd-9007-ba1be5a1ec76",
+                  "name": "CVE not found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/cve/{{cveId}}.json",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "cve",
+                        "{{cveId}}.json"
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-10-21T20:02:25.000Z",
+                  "updatedAt": "2026-10-21T20:02:25.000Z",
+                  "uid": "35240-b047f895-fe06-49dd-9007-ba1be5a1ec76"
+                }
+              ],
+              "createdAt": "2026-10-21T20:02:25.000Z",
+              "updatedAt": "2026-10-21T20:02:25.000Z",
+              "uid": "35240-338bcda9-f066-473c-bbed-801dc4398039"
+            }
+          ],
+          "id": "1345db70-bf40-4e43-ab3a-872d8cae93e4",
+          "createdAt": "2026-10-21T20:02:25.000Z",
+          "updatedAt": "2026-10-21T20:02:25.000Z",
+          "uid": "35240-1345db70-bf40-4e43-ab3a-872d8cae93e4"
+        }
+      ],
+      "id": "f8b72a95-94fb-4e55-a7ab-7ba1670394de",
+      "createdAt": "2026-10-21T20:02:25.000Z",
+      "updatedAt": "2026-10-21T20:02:25.000Z",
+      "uid": "35240-f8b72a95-94fb-4e55-a7ab-7ba1670394de"
     }
   ],
-  "info": {
-    "_postman_id": "8884a948-cc54-4d2b-a962-1871eb2504e8",
-    "name": "Red Hat Security Data Advisories CVEs API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "The Red Hat Security Data API provides access to CVE (Common Vulnerabilities and Exposures) data, CSAF security advisories, and OVAL vulnerability assessment data for Red Hat Enterprise Linux and other Red Hat products. Returns data in JSON format for automated vulnerability management workflows.\n\nContact Support:\n Name: Red Hat Security",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://access.redhat.com/hydra/rest/securitydata"
+    },
+    {
+      "key": "cveId",
+      "value": "<string>"
     }
-  }
+  ]
 }

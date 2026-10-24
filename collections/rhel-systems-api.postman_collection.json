@@ -1,286 +1,337 @@
 {
+  "info": {
+    "_postman_id": "4d2d2ca7-8189-43d7-8765-16e849cbf87c",
+    "name": "Red Hat Subscription Management Systems API",
+    "description": "API for managing Red Hat Enterprise Linux subscriptions, entitlements, and system registrations. Enables automated lifecycle management of subscriptions, system inventory, and entitlement reporting using OAuth 2.0 with offline tokens.\n\nContact Support:\n Name: Red Hat Customer Portal",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-21T20:02:17.000Z",
+    "updatedAt": "2026-10-21T20:02:18.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-4d2d2ca7-8189-43d7-8765-16e849cbf87c"
+  },
   "item": [
     {
-      "id": "b5b02437-b19c-4b5a-ae9f-efd5c30e878d",
-      "name": "Systems",
-      "description": {
-        "content": "Registered system management",
-        "type": "text/plain"
-      },
+      "name": "systems",
       "item": [
         {
-          "id": "e2821c90-6d66-4022-9158-f2f7df5811f1",
-          "name": "List Systems",
-          "request": {
-            "name": "List Systems",
-            "description": {
-              "content": "Returns a list of systems registered with Red Hat Subscription Management. Supports pagination via limit and offset parameters.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "systems"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "limit",
-                  "value": "100",
-                  "description": "Maximum number of systems to return"
-                },
-                {
-                  "disabled": false,
-                  "key": "offset",
-                  "value": "0",
-                  "description": "Offset for pagination"
-                }
-              ],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET"
-          },
-          "response": [
+          "name": "{uuid}",
+          "item": [
             {
-              "id": "801ca1eb-ccb8-49a9-91ac-12e1eca817c6",
-              "name": "List of registered systems",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "systems"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
+              "name": "Get System",
+              "id": "1d49d70a-e7fc-4ef6-8b85-b02609416d6c",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "oauth2",
+                  "oauth2": [
                     {
-                      "key": "limit",
-                      "value": "100"
+                      "key": "accessTokenUrl",
+                      "value": "https://sso.redhat.com/auth/realms/redhat-external/protocol/openid-connect/token",
+                      "type": "string"
                     },
                     {
-                      "key": "offset",
-                      "value": "0"
+                      "key": "grant_type",
+                      "value": "password_credentials",
+                      "type": "string"
                     }
-                  ],
-                  "variable": []
+                  ]
                 },
+                "method": "GET",
                 "header": [
                   {
                     "key": "Accept",
                     "value": "application/json"
                   }
                 ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"body\": [\n    {\n      \"uuid\": \"5c55480a-3792-8510-a3fc-2518cfba2642\",\n      \"name\": \"string\",\n      \"type\": \"string\",\n      \"created\": \"1977-07-30T23:34:14.097Z\",\n      \"lastUpdated\": \"2024-04-22T04:29:46.917Z\",\n      \"entitlementCount\": 8983,\n      \"entitlementStatus\": \"valid\",\n      \"serviceLevel\": \"string\",\n      \"usage\": \"string\",\n      \"facts\": {}\n    },\n    {\n      \"uuid\": \"c255e795-ff21-b6ef-f547-55e3fcb9dba3\",\n      \"name\": \"string\",\n      \"type\": \"string\",\n      \"created\": \"1960-01-07T07:06:41.711Z\",\n      \"lastUpdated\": \"2013-06-24T23:30:58.386Z\",\n      \"entitlementCount\": 3736,\n      \"entitlementStatus\": \"valid\",\n      \"serviceLevel\": \"string\",\n      \"usage\": \"string\",\n      \"facts\": {}\n    }\n  ],\n  \"pagination\": {\n    \"count\": 5438,\n    \"limit\": 5925,\n    \"offset\": 1212\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "3776f56c-2cbc-40c6-9783-35afadcd5bc5",
-              "name": "Unauthorized - invalid or expired token",
-              "originalRequest": {
                 "url": {
-                  "path": [
-                    "systems"
-                  ],
+                  "raw": "{{baseUrl}}/systems/:uuid",
                   "host": [
                     "{{baseUrl}}"
                   ],
-                  "query": [
+                  "path": [
+                    "systems",
+                    ":uuid"
+                  ],
+                  "variable": [
                     {
-                      "key": "limit",
-                      "value": "100"
-                    },
+                      "id": "99457b25-3a6a-4f5b-afb4-7acb8a75cd2c",
+                      "key": "uuid",
+                      "value": "<uuid>",
+                      "description": "(Required) System UUID"
+                    }
+                  ]
+                },
+                "description": "Returns details for a specific registered system by UUID."
+              },
+              "response": [
+                {
+                  "id": "6b7f5128-e3df-4b73-9062-539dce0f5dca",
+                  "name": "System detail",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/systems/:uuid",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "systems",
+                        ":uuid"
+                      ],
+                      "variable": [
+                        {
+                          "key": "uuid"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
                     {
-                      "key": "offset",
-                      "value": "0"
+                      "key": "Content-Type",
+                      "value": "application/json"
                     }
                   ],
-                  "variable": []
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"uuid\": \"<uuid>\",\n  \"name\": \"<string>\",\n  \"type\": \"<string>\",\n  \"created\": \"<dateTime>\",\n  \"lastUpdated\": \"<dateTime>\",\n  \"entitlementCount\": \"<integer>\",\n  \"entitlementStatus\": \"valid\",\n  \"serviceLevel\": \"<string>\",\n  \"usage\": \"<string>\",\n  \"facts\": {}\n}",
+                  "createdAt": "2026-10-21T20:02:18.000Z",
+                  "updatedAt": "2026-10-21T20:02:18.000Z",
+                  "uid": "35240-6b7f5128-e3df-4b73-9062-539dce0f5dca"
                 },
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
                 {
-                  "key": "Content-Type",
-                  "value": "text/plain"
+                  "id": "d0712c4e-8734-4a08-b821-85c76d0ab26d",
+                  "name": "System not found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/systems/:uuid",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "systems",
+                        ":uuid"
+                      ],
+                      "variable": [
+                        {
+                          "key": "uuid"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-10-21T20:02:18.000Z",
+                  "updatedAt": "2026-10-21T20:02:18.000Z",
+                  "uid": "35240-d0712c4e-8734-4a08-b821-85c76d0ab26d"
                 }
               ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
+              "createdAt": "2026-10-21T20:02:18.000Z",
+              "updatedAt": "2026-10-21T20:02:18.000Z",
+              "uid": "35240-1d49d70a-e7fc-4ef6-8b85-b02609416d6c"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "0a3676ff-d481-4c20-87db-2fec7b1fb9ec",
+          "createdAt": "2026-10-21T20:02:18.000Z",
+          "updatedAt": "2026-10-21T20:02:18.000Z",
+          "uid": "35240-0a3676ff-d481-4c20-87db-2fec7b1fb9ec"
         },
         {
-          "id": "732a2509-66aa-4e16-8851-5ec20ab61cb0",
-          "name": "Get System",
+          "name": "List Systems",
+          "id": "780873be-c59b-42e4-80a3-4afb968ef2c2",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
           "request": {
-            "name": "Get System",
-            "description": {
-              "content": "Returns details for a specific registered system by UUID.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "systems",
-                ":uuid"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
                 {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<uuid>",
-                  "key": "uuid",
-                  "description": "(Required) System UUID"
+                  "key": "accessTokenUrl",
+                  "value": "https://sso.redhat.com/auth/realms/redhat-external/protocol/openid-connect/token",
+                  "type": "string"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "password_credentials",
+                  "type": "string"
                 }
               ]
             },
+            "method": "GET",
             "header": [
               {
                 "key": "Accept",
                 "value": "application/json"
               }
             ],
-            "method": "GET"
+            "url": {
+              "raw": "{{baseUrl}}/systems?limit=100&offset=0",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "systems"
+              ],
+              "query": [
+                {
+                  "description": "Maximum number of systems to return",
+                  "key": "limit",
+                  "value": "100"
+                },
+                {
+                  "description": "Offset for pagination",
+                  "key": "offset",
+                  "value": "0"
+                }
+              ]
+            },
+            "description": "Returns a list of systems registered with Red Hat Subscription Management. Supports pagination via limit and offset parameters."
           },
           "response": [
             {
-              "id": "8f197114-b559-4859-9d6c-d0aea879bf6e",
-              "name": "System detail",
+              "id": "c1dccae4-70c8-4008-a4f5-2074e62ecfc6",
+              "name": "List of registered systems",
               "originalRequest": {
-                "url": {
-                  "path": [
-                    "systems",
-                    ":uuid"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<uuid>",
-                      "key": "uuid",
-                      "description": "(Required) System UUID"
-                    }
-                  ]
-                },
+                "method": "GET",
                 "header": [
                   {
                     "key": "Accept",
                     "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
                   }
                 ],
-                "method": "GET",
-                "body": {}
+                "url": {
+                  "raw": "{{baseUrl}}/systems?limit=100&offset=0",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "systems"
+                  ],
+                  "query": [
+                    {
+                      "description": "Maximum number of systems to return",
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "description": "Offset for pagination",
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ]
+                }
               },
               "status": "OK",
               "code": 200,
+              "_postman_previewlanguage": "json",
               "header": [
                 {
                   "key": "Content-Type",
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"uuid\": \"65f57119-3f3d-5bba-30a1-1a36496d060a\",\n  \"name\": \"string\",\n  \"type\": \"string\",\n  \"created\": \"1998-09-11T05:30:58.434Z\",\n  \"lastUpdated\": \"2014-05-19T05:26:28.488Z\",\n  \"entitlementCount\": 9284,\n  \"entitlementStatus\": \"invalid\",\n  \"serviceLevel\": \"string\",\n  \"usage\": \"string\",\n  \"facts\": {}\n}",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "{\n  \"body\": [\n    {\n      \"uuid\": \"<uuid>\",\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"created\": \"<dateTime>\",\n      \"lastUpdated\": \"<dateTime>\",\n      \"entitlementCount\": \"<integer>\",\n      \"entitlementStatus\": \"invalid\",\n      \"serviceLevel\": \"<string>\",\n      \"usage\": \"<string>\",\n      \"facts\": {}\n    },\n    {\n      \"uuid\": \"<uuid>\",\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"created\": \"<dateTime>\",\n      \"lastUpdated\": \"<dateTime>\",\n      \"entitlementCount\": \"<integer>\",\n      \"entitlementStatus\": \"partial\",\n      \"serviceLevel\": \"<string>\",\n      \"usage\": \"<string>\",\n      \"facts\": {}\n    }\n  ],\n  \"pagination\": {\n    \"count\": \"<integer>\",\n    \"limit\": \"<integer>\",\n    \"offset\": \"<integer>\"\n  }\n}",
+              "createdAt": "2026-10-21T20:02:18.000Z",
+              "updatedAt": "2026-10-21T20:02:18.000Z",
+              "uid": "35240-c1dccae4-70c8-4008-a4f5-2074e62ecfc6"
             },
             {
-              "id": "b45e3419-b30d-4241-98e2-a7840daa86aa",
-              "name": "System not found",
+              "id": "42261d9f-7718-43df-b2f8-33d923188985",
+              "name": "Unauthorized - invalid or expired token",
               "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
                 "url": {
-                  "path": [
-                    "systems",
-                    ":uuid"
-                  ],
+                  "raw": "{{baseUrl}}/systems?limit=100&offset=0",
                   "host": [
                     "{{baseUrl}}"
                   ],
-                  "query": [],
-                  "variable": [
+                  "path": [
+                    "systems"
+                  ],
+                  "query": [
                     {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<uuid>",
-                      "key": "uuid",
-                      "description": "(Required) System UUID"
+                      "description": "Maximum number of systems to return",
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "description": "Offset for pagination",
+                      "key": "offset",
+                      "value": "0"
                     }
                   ]
-                },
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
                 }
-              ],
-              "body": "",
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "text",
+              "header": [],
               "cookie": [],
-              "_postman_previewlanguage": "text"
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-10-21T20:02:18.000Z",
+              "updatedAt": "2026-10-21T20:02:18.000Z",
+              "uid": "35240-42261d9f-7718-43df-b2f8-33d923188985"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "createdAt": "2026-10-21T20:02:18.000Z",
+          "updatedAt": "2026-10-21T20:02:18.000Z",
+          "uid": "35240-780873be-c59b-42e4-80a3-4afb968ef2c2"
         }
       ],
-      "event": []
+      "id": "a03c0987-2ef0-4488-97f0-2209427b6b54",
+      "createdAt": "2026-10-21T20:02:18.000Z",
+      "updatedAt": "2026-10-21T20:02:18.000Z",
+      "uid": "35240-a03c0987-2ef0-4488-97f0-2209427b6b54"
     }
   ],
-  "event": [],
   "variable": [
     {
-      "type": "string",
-      "value": "https://access.redhat.com/hydra/rest/securitydata",
-      "key": "baseUrl"
+      "key": "baseUrl",
+      "value": "https://api.access.redhat.com/management/v1"
     }
-  ],
-  "info": {
-    "_postman_id": "b5ac6e32-ecdc-4bbe-b5ab-0edb0c2f937a",
-    "name": "Red Hat Security Data Advisories Systems API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "The Red Hat Security Data API provides access to CVE (Common Vulnerabilities and Exposures) data, CSAF security advisories, and OVAL vulnerability assessment data for Red Hat Enterprise Linux and other Red Hat products. Returns data in JSON format for automated vulnerability management workflows.\n\nContact Support:\n Name: Red Hat Security",
-      "type": "text/plain"
-    }
-  }
+  ]
 }
